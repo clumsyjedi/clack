@@ -27,7 +27,8 @@
 
 (def allowed-opts {:filter ["-f" "--filter"]
                    :remove ["-r" "--remove"]
-                   :get-in ["-g" "--get-in" ]})
+                   :get-in ["-g" "--get-in"]
+                   :eval ["-e" "--eval"]})
 
 
 (def short-opts (zipmap (map first (vals allowed-opts)) (keys allowed-opts)))
@@ -67,6 +68,8 @@
              :filter (filter qval data)
              
              :remove (filter qval data)
+             
+             :eval (qval data)
              
              (str "Unknown query type: " qtype))
            queries)))
