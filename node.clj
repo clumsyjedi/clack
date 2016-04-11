@@ -1,6 +1,6 @@
 (require 'cljs.build.api)
 
-(cljs.build.api/build  "src"
+(cljs.build.api/build "src"
                       {:main 'clack.core
-                       :output-to  "main.js"
-                       :target :nodejs})
+                       :output-to "clack.js"
+                       :target :nodejs })
