@@ -8,7 +8,7 @@ fi
 
 CLACK_BIN_DIR=$(dirname $0)
 CLACK_DIR=$CLACK_BIN_DIR/..
-CLACK_LIB_DIR=$CLACK_DIR/lib
+cd "$CLACK_DIR"
 
-node "$CLACK_LIB_DIR/clack.js" "$@"
+node "$CLACK_DIR/clack.js" "$@"
 
