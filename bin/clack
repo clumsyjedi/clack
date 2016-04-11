@@ -1,0 +1,14 @@
+#!/bin/bash
+
+NODE_BIN=$(which node)
+if [ "$NODE_BIN" = "" ]; then
+    echo "node binary not found. Please add the 'node' executable to your path";
+    exit 1;
+fi
+
+CLACK_BIN_DIR=$(dirname $0)
+CLACK_DIR=$CLACK_BIN_DIR/..
+CLACK_LIB_DIR=$CLACK_DIR/lib
+
+node "$CLACK_LIB_DIR/clack.js" "$@"
+
