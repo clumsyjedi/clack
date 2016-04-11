@@ -4,8 +4,6 @@
             [cljs.tools.reader :refer [read-string]]
             [cljs.js :refer [eval js-eval empty-state]]))
 
-
-
 (nodejs/enable-util-print!)
 
 (defn error 
@@ -27,7 +25,7 @@
 
 (def allowed-opts {:filter ["-f" "--filter"]
                    :remove ["-r" "--remove"]
-                   :get-in ["-g" "--get-in"]
+                   :get ["-g" "--get-in"]
                    :eval ["-e" "--eval"]})
 
 
@@ -40,6 +38,12 @@
 (defn looks-like-keyword? [s]
   (re-find #"^:[\w\-\.]+$" s))
 
+(defn looks-like-string? [s]
+  (re-find #"^[\w\.][\w\-\.]*$" s))
+
+(defn looks-like-number? [s]
+  (every? #{\1 \2 \3 \4 \5 \6 \7 \8 \9 \0} s))
+
 (defn get-query 
   ([args] (get-query args []))
   ([[arg & args] query]
@@ -48,7 +52,13 @@
          
          (looks-like-keyword? arg)
          (recur args (conj query [:get (keyword (.substr arg 1))]))
-         
+
+         (looks-like-number? arg)
+         (recur args (conj query [:get (js/parseInt arg)]))
+
+         (looks-like-string? arg)
+         (recur args (conj query [:get arg]))
+
          (short-opts arg)
          (recur (rest args) (conj query [(short-opts arg) (:value (eval* (first args)))]))
          
