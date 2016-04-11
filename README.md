@@ -13,13 +13,13 @@ and you're done.
 
 ## Usage
 
-Clack provides a command line interface to clojure data and code. It is inspired conceptually by [https://github.com/stedolan/jq](jq) but differs considerably in it's syntax.
+Clack provides a command line interface to clojure data and code. It is inspired conceptually by [jq](https://github.com/stedolan/jq) but differs considerably in it's syntax.
 
 Clack reads data from stdin, and writes it to stdout. Options for manipulating that data are passed as arguments to the executable.
 
 Let's look at some examples:
 
-Echoing data unchanged
+*Echoing data unchanged*
 
 ```
 echo '{}' | clack
@@ -99,4 +99,14 @@ Likewise this allows tou to do lookups with strings that start with `-` - which 
 clumsyjedi@arkham ~ $ echo '{"-filter" :bar}' | clack -g '"-filter"'
 ```
 
-@copy; 2016 Frazer Irving
+Finally, you can chain as many operations as you want , either through multiple switches, or by chaining on the command line with pipes (clack pipes if you like).
+
+```
+echo {:foo {:bar {:baz [0 1 2]}}} | clack -e first -e second :bar -g :baz -f 'even?'
+```
+or
+```
+echo {:foo {:bar {:baz [0 1 2]}}} | clack -e first | clack -e second | clack -g :bar | clack :baz | clack -f 'even?'
+```
+
+&copy; 2016 Frazer Irving
