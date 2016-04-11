@@ -6,7 +6,7 @@ On the command line.
 
 ## Setup
 
-1. Install [https://nodejs.org](Node.js) on your machine and make sure the `node` executable is on your PATH.
+1. Install [node.js](https://nodejs.org) on your machine and make sure the `node` executable is on your PATH.
 1. Clone this project `git clone https://github.com/clumsyjedi/clack`
 1. Add `clack` executable to your path `export PATH=/path/to/clack/bin:$PATH`
 
