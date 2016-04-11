@@ -6,6 +6,7 @@ On the command line.
 
 ## Setup
 
+1. Install [https://nodejs.org](Node.js) on your machine and make sure the `node` executable is on your PATH.
 1. Clone this project `git clone https://github.com/clumsyjedi/clack`
 1. Add `clack` executable to your path `export PATH=/path/to/clack/bin:$PATH`
 
@@ -90,13 +91,13 @@ Sometimes the auto-coercion of your query params will catch you out. For example
 Is not `:bar` as expected, because the key of the hash is inside quotes, making it a string. To get around this, you can use:
 
 ```
-clumsyjedi@arkham ~ $ echo '{":foo" :bar}' | clack -g '":foo"'
+echo '{":foo" :bar}' | clack -g '":foo"'
 ```
 
 Likewise this allows tou to do lookups with strings that start with `-` - which would normll be interpreted as getopt style args.
 
 ```
-clumsyjedi@arkham ~ $ echo '{"-filter" :bar}' | clack -g '"-filter"'
+echo '{"-filter" :bar}' | clack -g '"-filter"'
 ```
 
 Finally, you can chain as many operations as you want , either through multiple switches, or by chaining on the command line with pipes (clack pipes if you like).
