@@ -94,13 +94,13 @@ Is not `:bar` as expected, because the key of the hash is inside quotes, making 
 echo '{":foo" :bar}' | clack -g '":foo"'
 ```
 
-Likewise this allows tou to do lookups with strings that start with `-` - which would normll be interpreted as getopt style args.
+Likewise this allows you to do lookups with strings that start with `-` - which would normally be interpreted as getopt style args.
 
 ```
 echo '{"-filter" :bar}' | clack -g '"-filter"'
 ```
 
-Finally, you can chain as many operations as you want , either through multiple switches, or by chaining on the command line with pipes (clack pipes if you like).
+Finally, you can chain as many operations as you want, either through multiple switches, or by chaining on the command line with pipes (clack pipes if you like).
 
 ```
 echo {:foo {:bar {:baz [0 1 2]}}} | clack -e first -e second :bar -g :baz -f 'even?'
