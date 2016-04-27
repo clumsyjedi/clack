@@ -6,10 +6,11 @@
     :builds [{
         :source-paths ["src"]
         :compiler {
-          :main 'clack.core
+          :main "clack.core"
           :output-to "clack.js"
           :output-dir "out"
-          ;; :optimizations :whitespace
+          :optimizations :none
           :target :nodejs
-          ;; :pretty-print false
+          :optimize-constants true
+          :pretty-print false
           }}]})
