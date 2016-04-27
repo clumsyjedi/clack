@@ -77,7 +77,7 @@
              
              :filter (filter qval data)
              
-             :remove (filter qval data)
+             :remove (remove qval data)
              
              :eval (qval data)
              

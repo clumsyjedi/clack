@@ -146,7 +146,7 @@ if(cljs.core.truth_(pred__70.call(null,new cljs.core.Keyword(null,"filter","filt
 return cljs.core.filter.call(null,qval,data);
 } else {
 if(cljs.core.truth_(pred__70.call(null,new cljs.core.Keyword(null,"remove","remove",-131428414),expr__71))){
-return cljs.core.filter.call(null,qval,data);
+return cljs.core.remove.call(null,qval,data);
 } else {
 if(cljs.core.truth_(pred__70.call(null,new cljs.core.Keyword(null,"eval","eval",-1103567905),expr__71))){
 return qval.call(null,data);
