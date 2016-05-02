@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.8.41 {:target :nodejs}
+// Compiled by ClojureScript 1.8.51 {:optimize-constants true, :target :nodejs}
 goog.provide('cljs.tools.reader.impl.commons');
 goog.require('cljs.core');
 goog.require('cljs.tools.reader.reader_types');
@@ -17,8 +17,8 @@ cljs.tools.reader.impl.commons.read_past = (function cljs$tools$reader$impl$comm
 var ch = cljs.tools.reader.reader_types.read_char.call(null,rdr);
 while(true){
 if(pred.call(null,ch)){
-var G__121 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
-ch = G__121;
+var G__7427 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
+ch = G__7427;
 continue;
 } else {
 return ch;
@@ -77,8 +77,8 @@ return parseFloat(s);
 }
 });
 cljs.tools.reader.impl.commons.matches_QMARK_ = (function cljs$tools$reader$impl$commons$matches_QMARK_(pattern,s){
-var vec__123 = cljs.core.re_find.call(null,pattern,s);
-var match = cljs.core.nth.call(null,vec__123,(0),null);
+var vec__7429 = cljs.core.re_find.call(null,pattern,s);
+var match = cljs.core.nth.call(null,vec__7429,(0),null);
 return (match === s);
 });
 cljs.tools.reader.impl.commons.match_number = (function cljs$tools$reader$impl$commons$match_number(s){
@@ -127,23 +127,23 @@ return null;
 }
 });
 cljs.tools.reader.impl.commons.read_comment = (function cljs$tools$reader$impl$commons$read_comment(var_args){
-var args__3483__auto__ = [];
-var len__3480__auto___126 = arguments.length;
-var i__3481__auto___127 = (0);
+var args__7287__auto__ = [];
+var len__7280__auto___7432 = arguments.length;
+var i__7281__auto___7433 = (0);
 while(true){
-if((i__3481__auto___127 < len__3480__auto___126)){
-args__3483__auto__.push((arguments[i__3481__auto___127]));
+if((i__7281__auto___7433 < len__7280__auto___7432)){
+args__7287__auto__.push((arguments[i__7281__auto___7433]));
 
-var G__128 = (i__3481__auto___127 + (1));
-i__3481__auto___127 = G__128;
+var G__7434 = (i__7281__auto___7433 + (1));
+i__7281__auto___7433 = G__7434;
 continue;
 } else {
 }
 break;
 }
 
-var argseq__3484__auto__ = ((((1) < args__3483__auto__.length))?(new cljs.core.IndexedSeq(args__3483__auto__.slice((1)),(0),null)):null);
-return cljs.tools.reader.impl.commons.read_comment.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__3484__auto__);
+var argseq__7288__auto__ = ((((1) < args__7287__auto__.length))?(new cljs.core.IndexedSeq(args__7287__auto__.slice((1)),(0),null)):null);
+return cljs.tools.reader.impl.commons.read_comment.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__7288__auto__);
 });
 
 cljs.tools.reader.impl.commons.read_comment.cljs$core$IFn$_invoke$arity$variadic = (function (rdr,_){
@@ -152,32 +152,32 @@ return cljs.tools.reader.impl.commons.skip_line.call(null,rdr);
 
 cljs.tools.reader.impl.commons.read_comment.cljs$lang$maxFixedArity = (1);
 
-cljs.tools.reader.impl.commons.read_comment.cljs$lang$applyTo = (function (seq124){
-var G__125 = cljs.core.first.call(null,seq124);
-var seq124__$1 = cljs.core.next.call(null,seq124);
-return cljs.tools.reader.impl.commons.read_comment.cljs$core$IFn$_invoke$arity$variadic(G__125,seq124__$1);
+cljs.tools.reader.impl.commons.read_comment.cljs$lang$applyTo = (function (seq7430){
+var G__7431 = cljs.core.first.call(null,seq7430);
+var seq7430__$1 = cljs.core.next.call(null,seq7430);
+return cljs.tools.reader.impl.commons.read_comment.cljs$core$IFn$_invoke$arity$variadic(G__7431,seq7430__$1);
 });
 cljs.tools.reader.impl.commons.throwing_reader = (function cljs$tools$reader$impl$commons$throwing_reader(msg){
 return (function() { 
-var G__129__delegate = function (rdr,_){
+var G__7435__delegate = function (rdr,_){
 return cljs.tools.reader.reader_types.reader_error.call(null,rdr,msg);
 };
-var G__129 = function (rdr,var_args){
+var G__7435 = function (rdr,var_args){
 var _ = null;
 if (arguments.length > 1) {
-var G__130__i = 0, G__130__a = new Array(arguments.length -  1);
-while (G__130__i < G__130__a.length) {G__130__a[G__130__i] = arguments[G__130__i + 1]; ++G__130__i;}
-  _ = new cljs.core.IndexedSeq(G__130__a,0);
+var G__7436__i = 0, G__7436__a = new Array(arguments.length -  1);
+while (G__7436__i < G__7436__a.length) {G__7436__a[G__7436__i] = arguments[G__7436__i + 1]; ++G__7436__i;}
+  _ = new cljs.core.IndexedSeq(G__7436__a,0);
 } 
-return G__129__delegate.call(this,rdr,_);};
-G__129.cljs$lang$maxFixedArity = 1;
-G__129.cljs$lang$applyTo = (function (arglist__131){
-var rdr = cljs.core.first(arglist__131);
-var _ = cljs.core.rest(arglist__131);
-return G__129__delegate(rdr,_);
+return G__7435__delegate.call(this,rdr,_);};
+G__7435.cljs$lang$maxFixedArity = 1;
+G__7435.cljs$lang$applyTo = (function (arglist__7437){
+var rdr = cljs.core.first(arglist__7437);
+var _ = cljs.core.rest(arglist__7437);
+return G__7435__delegate(rdr,_);
 });
-G__129.cljs$core$IFn$_invoke$arity$variadic = G__129__delegate;
-return G__129;
+G__7435.cljs$core$IFn$_invoke$arity$variadic = G__7435__delegate;
+return G__7435;
 })()
 ;
 });

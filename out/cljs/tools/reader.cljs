@@ -702,10 +702,11 @@
 
     (symbol? form)
     (list 'quote
-          (if (and (not (namespace form))
-                   (gstring/endsWith (name form) "#"))
-            (register-gensym form)
-            (resolve-symbol form)))
+          (if (namespace form)
+            (resolve-symbol form)
+            (if (gstring/endsWith (name form) "#")
+              (register-gensym form)
+              form)))
 
     (unquote? form) (second form)
     (unquote-splicing? form) (throw (ex-info "unquote-splice not in list"
