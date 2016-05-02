@@ -110,4 +110,23 @@ or
 echo {:foo {:bar {:baz [0 1 2]}}} | clack -e first | clack -e second | clack -g :bar | clack :baz | clack -f 'even?'
 ```
 
+## Transit and JSON support
+
+Clack can read and write Transit-JS and JSON. Using the `-i` or `--input-format` and `-o` or `--output-format` switches.
+
+JSON to Transit
+```
+echo "{\"foo\": \"bar\"}" | clack -i js -o tjs
+```
+
+EDN to JSON
+```
+echo "{:foo :bar}" | clack -i edn -o js
+```
+
+Transit to EDN
+```
+echo "[\"^ \",\"foo\",null]" | clack -i tjs -o edn
+```
+
 &copy; 2016 Frazer Irving

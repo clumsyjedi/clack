@@ -1,2 +1,6 @@
+repl
 target
 main.js
+.cljs_node_repl/
+.cljs_rhino_repl/
+.lein-repl-history
