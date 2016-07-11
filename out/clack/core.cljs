@@ -6,6 +6,7 @@
 
 (def allowed-opts {:input-format ["-i" "--input-format"]
                    :output-format ["-o" "--output-format"]
+                   :map ["-m" "--map"]
                    :filter ["-f" "--filter"]
                    :remove ["-r" "--remove"]
                    :get ["-g" "--get-in"]
@@ -71,6 +72,8 @@
     (recur (condp = qtype
 
              :get (get data qval)
+
+             :map (map qval data)
              
              :filter (filter qval data)
              

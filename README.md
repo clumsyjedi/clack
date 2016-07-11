@@ -56,6 +56,16 @@ or
 echo '{:foo 1 :bar 2 :baz 3}' | clack --eval keys
 ```
 
+Map data
+
+```
+echo '[0 1 2 3 4 5 6 7 8 9]' | clack -m 'inc'
+```
+or
+```
+echo '[0 1 2 3 4 5 6 7 8 9]' | clack --map 'inc'
+```
+
 Filter data
 
 ```
