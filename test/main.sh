@@ -14,6 +14,7 @@ if [ "$CLACK_ASSERTIONS_FILE" == "" ]; then
     echo "Testing everything"
     . test/general.sh
     . test/transit.sh
+    . test/stringify.sh
 else
     echo "Testing $CLACK_ASSERTIONS_FILE"
     . "$CLACK_ASSERTIONS_FILE"

@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.8.51 {:optimize-constants true, :target :nodejs}
+// Compiled by ClojureScript 1.9.229 {:optimize-constants true, :target :nodejs}
 goog.provide('cljs.tagged_literals');
 goog.require('cljs.core');
 goog.require('cljs.reader');
@@ -8,8 +8,8 @@ if(cljs.core.vector_QMARK_.call(null,form)){
 throw (new Error("Queue literal expects a vector for its elements."));
 }
 
-return cljs.core._conj.call(null,cljs.core._conj.call(null,(function (){var x__7044__auto__ = form;
-return cljs.core._conj.call(null,cljs.core.List.EMPTY,x__7044__auto__);
+return cljs.core._conj.call(null,cljs.core._conj.call(null,(function (){var x__7243__auto__ = form;
+return cljs.core._conj.call(null,cljs.core.List.EMPTY,x__7243__auto__);
 })(),cljs.core.cst$sym$cljs$core$PersistentQueue$EMPTY),cljs.core.cst$sym$cljs$core_SLASH_into);
 });
 cljs.tagged_literals.read_uuid = (function cljs$tagged_literals$read_uuid(form){
@@ -19,7 +19,7 @@ throw (new Error("UUID literal expects a string as its representation."));
 }
 
 try{return cljs.core.uuid.call(null,form);
-}catch (e7789){var e = e7789;
+}catch (e8079){var e = e8079;
 throw (new Error(e.message));
 }});
 cljs.tagged_literals.read_inst = (function cljs$tagged_literals$read_inst(form){
@@ -29,7 +29,7 @@ throw (new Error("Instance literal expects a string for its timestamp."));
 }
 
 try{return cljs.reader.read_date.call(null,form);
-}catch (e7791){var e = e7791;
+}catch (e8081){var e = e8081;
 throw (new Error(e.message));
 }});
 cljs.tagged_literals.valid_js_literal_key_QMARK_ = (function cljs$tagged_literals$valid_js_literal_key_QMARK_(k){
@@ -51,8 +51,8 @@ cljs.tagged_literals.JSValue.cljs$lang$type = true;
 
 cljs.tagged_literals.JSValue.cljs$lang$ctorStr = "cljs.tagged-literals/JSValue";
 
-cljs.tagged_literals.JSValue.cljs$lang$ctorPrWriter = (function (this__6816__auto__,writer__6817__auto__,opt__6818__auto__){
-return cljs.core._write.call(null,writer__6817__auto__,"cljs.tagged-literals/JSValue");
+cljs.tagged_literals.JSValue.cljs$lang$ctorPrWriter = (function (this__7015__auto__,writer__7016__auto__,opt__7017__auto__){
+return cljs.core._write.call(null,writer__7016__auto__,"cljs.tagged-literals/JSValue");
 });
 
 cljs.tagged_literals.__GT_JSValue = (function cljs$tagged_literals$__GT_JSValue(val){

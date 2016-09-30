@@ -406,13 +406,13 @@
   (emit-wrap env
     (if (= js-type :object)
       (do
-        (emits "{")
+        (emits "({")
         (when-let [items (seq items)]
           (let [[[k v] & r] items]
             (emits "\"" (name k) "\": " v)
             (doseq [[k v] r]
               (emits ", \"" (name k) "\": " v))))
-        (emits "}"))
+        (emits "})"))
       (emits "[" (comma-sep items) "]"))))
 
 (defmethod emit* :constant
@@ -933,7 +933,7 @@
                            ;; ignore new type hints for now - David
                            (and (not (set? tag))
                                 (not ('#{any clj clj-or-nil clj-nil number string boolean function object array} tag))
-                                (when-let [ps (:protocols (ana/resolve-existing-var (dissoc env :locals) tag))]
+                                (when-let [ps (:protocols (ana/resolve-existing-var env (symbol (name tag))))]
                                   (ps protocol)))))))
         opt-not? (and (= (:name info) 'cljs.core/not)
                       (= (ana/infer-tag env (first (:args expr))) 'boolean))
@@ -1203,17 +1203,30 @@
 #?(:clj
    (defn emit-source-map [src dest sm-data opts]
      (let [sm-file (io/file (str (.getPath ^File dest) ".map"))]
-       (emits "\n//# sourceMappingURL="
-         (or (:source-map-url opts) (.getName sm-file))
-         (if (true? (:source-map-timestamp opts))
-           (str "?rel=" (System/currentTimeMillis))
-           ""))
+       (if-let [smap (:source-map-asset-path opts)]
+         (emits "\n//# sourceMappingURL=" smap
+           (string/replace (util/path sm-file)
+             (str (util/path (io/file (:output-dir opts))))
+             "")
+           (if (true? (:source-map-timestamp opts))
+             (str
+               (if-not (string/index-of smap "?") "?" "&")
+               "rel=" (System/currentTimeMillis))
+             ""))
+         (emits "\n//# sourceMappingURL="
+           (or (:source-map-url opts) (.getName sm-file))
+           (if (true? (:source-map-timestamp opts))
+             (str "?rel=" (System/currentTimeMillis))
+             "")))
        (spit sm-file
          (sm/encode {(url-path src) (:source-map sm-data)}
            {:lines (+ (:gen-line sm-data) 2)
             :file (url-path dest)
+            :source-map-path (:source-map-path opts)
             :source-map-timestamp (:source-map-timestamp opts)
-            :source-map-pretty-print (:source-map-pretty-print opts)})))))
+            :source-map-pretty-print (:source-map-pretty-print opts)
+            :relpaths {(util/path src)
+                       (util/ns->relpath (first (:provides opts)) (:ext opts))}})))))
 
 #?(:clj
    (defn emit-source [src dest ext opts]
@@ -1261,7 +1274,8 @@
                                  (when sm-data
                                    {:source-map (:source-map sm-data)}))]
                    (when (and sm-data (= :none (:optimizations opts)))
-                     (emit-source-map src dest sm-data opts))
+                     (emit-source-map src dest sm-data
+                       (merge opts {:ext ext :provides [ns-name]})))
                    (let [path (.getPath (.toURL ^File dest))]
                      (swap! env/*compiler* assoc-in [::compiled-cljs path] ret))
                    (let [{:keys [output-dir cache-analysis]} opts]

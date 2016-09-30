@@ -1,8 +1,13 @@
 (ns clack.util
-  (:require [cljs.tools.reader :refer [read-string]]
-            [cljs.js :refer [eval js-eval empty-state]]
+  (:require [cljs.js :refer [eval js-eval empty-state]]
+            [cljs.tools.reader :refer [read-string]]
             [cljs.pprint :refer [pprint]]
-            [cognitect.transit :as transit]))
+            [cognitect.transit :as transit]
+            [clojure.string :as s]))
+
+(defonce formats {:js :json :json :json 
+                  :transit :tjs :transit-js :tjs :tjs :tjs
+                  :edn :edn})
 
 (defn error 
   "log error and exit with error code"
@@ -25,37 +30,9 @@
         identity))
 
 
-(defn- find-encoding [enc]
-  (get {:js :json :json :json 
-        :transit :tjs :transit-js :tjs :tjs :tjs
-        :edn :edn} 
-       enc :edn))
+(defn input-format [meta]
+  (get formats (get meta :input-format) :edn))
 
-(defmulti read-input (fn [encoding input] (find-encoding encoding)))
-
-(defmethod read-input :json [_ input]
-  (js->clj (js/JSON.parse input)))
-
-(defmethod read-input :tjs [_ input]
-  (let [r (transit/reader :json)]
-    (transit/read r input)))
-
-(defmethod read-input :edn [_ input]
-  (read-string input))
-
-(defmethod read-input :default [_ input]
-  (read-input :edn input))
-
-(defmulti write-output (fn [encoding output] (find-encoding encoding)))
-
-(defmethod write-output :json [_ output]
-  (js/JSON.stringify (clj->js output) nil "\t"))
-
-(defmethod write-output :tjs [_ output]
-  (let [w (transit/writer :json)]
-    (transit/write w output)))
-
-(defmethod write-output :edn [_ output]
-  (with-out-str (pprint output)))
-
+(defn output-format [meta]
+  (get formats (get meta :output-format) :edn))
 

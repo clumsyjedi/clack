@@ -1,7 +1,11 @@
 (ns clack.core
   (:require [cljs.nodejs :as nodejs]
+            [cljs.tools.reader :refer [read-string]]
             [cljs.pprint :refer [pprint]]
-            [clack.util :refer [eval* read-input error write-output]])) 
+            [clack.util :refer [input-format output-format eval* error]]
+            [clack.parser :as parser]
+            [clack.serializer :as serializer])) 
+
 (nodejs/enable-util-print!)
 
 (def allowed-opts {:input-format ["-i" "--input-format"]
@@ -11,6 +15,7 @@
                    :remove ["-r" "--remove"]
                    :get ["-g" "--get-in"]
                    :eval ["-e" "--eval"]})
+
 (def meta-opt-keys #{:input-format :output-format})
 
 ;; search opts are filters, evals etc that will be applied to your data structure
@@ -55,7 +60,7 @@
          (meta-opts arg)
          (recur (rest args) 
                 (update-in query [:meta] 
-                           assoc (meta-opts arg) (keyword (read-input :edn (first args)))))
+                           assoc (meta-opts arg) (keyword (read-string (first args)))))
          
          (search-opts arg)
          (recur (rest args) 
@@ -84,26 +89,20 @@
              (str "Unknown query type: " qtype))
            queries)))
 
-(defn handle-input [input query meta]
-   query
-  (let [data (read-input (:input-format meta) input)] 
-    (write-output (:output-format meta) 
-                  (if (not-empty query)
-                    (search data query) 
-                    data))))
+(defn apply-query [query entities]
+  (map (partial serializer/serialize (output-format (:meta query)))
+       (if-let [s (not-empty (get query :search))]
+         (map #(search % s) entities)
+         entities)))
 
 (defn slurp-stdin []
-  ; do we need these, do some testing around input/output encoding
-  ;(js/process.stdin.setEncoding "utf8")
-  ;(js/process.stdout.setEncoding "utf8")
-
-  (let [input (atom "")
-        {:keys [meta search]} (when-let [args (not-empty (drop 2 (js->clj js/process.argv)))]
-                                (get-query args))]
-    (js/process.stdin.on "readable" (fn []
-                                      (when-let [chunk (js/process.stdin.read)]
-                                        (swap! input #(str % chunk)))))
-    (js/process.stdin.on "end" (fn [] (print (handle-input @input search meta))))))
+  (let [query (when-let [args (not-empty (drop 2 (js->clj js/process.argv)))]
+                (get-query args))]
+    (parser/parse (input-format (:meta query)) 
+                  js/process.stdin 
+                  (fn [entities]
+                    (doseq [entity (apply-query query entities)]
+                      (print entity))))))
 
 (defn -main [& args]
   (slurp-stdin))
