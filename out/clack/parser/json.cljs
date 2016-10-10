@@ -11,7 +11,8 @@
       (aset parser "onValue" (fn [entity]
                                (this-as self
                                         (when (zero? (.-length (.-stack self)))
-                                          (swap! entities conj (js->clj entity))))))
+                                          (swap! entities conj (js->clj entity 
+                                                                        :keywordize-keys true))))))
       (.on stream "readable" (fn []
                                (when-let [chunk (.read stream)]
                                  (.write parser chunk))))

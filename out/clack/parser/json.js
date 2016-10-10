@@ -40,7 +40,7 @@ var parser = (new clack.parser.json.jsonparse());
 return (function (entity){
 var self = this;
 if((self.stack.length === (0))){
-return cljs.core.swap_BANG_.call(null,entities,cljs.core.conj,cljs.core.js__GT_clj.call(null,entity));
+return cljs.core.swap_BANG_.call(null,entities,cljs.core.conj,cljs.core.js__GT_clj.call(null,entity,cljs.core.cst$kw$keywordize_DASH_keys,true));
 } else {
 return null;
 }

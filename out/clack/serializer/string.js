@@ -37,13 +37,13 @@ var this__7031__auto____$1 = this;
 return cljs.core._lookup.call(null,this__7031__auto____$1,k__7032__auto__,null);
 });
 
-clack.serializer.string.StringSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k15844,else__7034__auto__){
+clack.serializer.string.StringSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14777,else__7034__auto__){
 var self__ = this;
 var this__7033__auto____$1 = this;
-var G__15846 = k15844;
-switch (G__15846) {
+var G__14779 = k14777;
+switch (G__14779) {
 default:
-return cljs.core.get.call(null,self__.__extmap,k15844,else__7034__auto__);
+return cljs.core.get.call(null,self__.__extmap,k14777,else__7034__auto__);
 
 }
 });
@@ -61,10 +61,10 @@ return cljs.core.pr_sequential_writer.call(null,writer__7046__auto__,pr_pair__70
 
 clack.serializer.string.StringSerializer.prototype.cljs$core$IIterable$ = true;
 
-clack.serializer.string.StringSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__15843){
+clack.serializer.string.StringSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14776){
 var self__ = this;
-var G__15843__$1 = this;
-return (new cljs.core.RecordIter((0),G__15843__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
+var G__14776__$1 = this;
+return (new cljs.core.RecordIter((0),G__14776__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 clack.serializer.string.StringSerializer.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__7029__auto__){
@@ -91,20 +91,20 @@ clack.serializer.string.StringSerializer.prototype.clack$serializer$protocol$ISe
 var self__ = this;
 var this$__$1 = this;
 return clojure.string.replace.call(null,(function (){var sb__7395__auto__ = (new goog.string.StringBuffer());
-var _STAR_print_newline_STAR_15847_15853 = cljs.core._STAR_print_newline_STAR_;
-var _STAR_print_fn_STAR_15848_15854 = cljs.core._STAR_print_fn_STAR_;
+var _STAR_print_newline_STAR_14780_14786 = cljs.core._STAR_print_newline_STAR_;
+var _STAR_print_fn_STAR_14781_14787 = cljs.core._STAR_print_fn_STAR_;
 cljs.core._STAR_print_newline_STAR_ = true;
 
-cljs.core._STAR_print_fn_STAR_ = ((function (_STAR_print_newline_STAR_15847_15853,_STAR_print_fn_STAR_15848_15854,sb__7395__auto__,this$__$1){
+cljs.core._STAR_print_fn_STAR_ = ((function (_STAR_print_newline_STAR_14780_14786,_STAR_print_fn_STAR_14781_14787,sb__7395__auto__,this$__$1){
 return (function (x__7396__auto__){
 return sb__7395__auto__.append(x__7396__auto__);
-});})(_STAR_print_newline_STAR_15847_15853,_STAR_print_fn_STAR_15848_15854,sb__7395__auto__,this$__$1))
+});})(_STAR_print_newline_STAR_14780_14786,_STAR_print_fn_STAR_14781_14787,sb__7395__auto__,this$__$1))
 ;
 
 try{cljs.pprint.pprint.call(null,data);
-}finally {cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR_15848_15854;
+}finally {cljs.core._STAR_print_fn_STAR_ = _STAR_print_fn_STAR_14781_14787;
 
-cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR_15847_15853;
+cljs.core._STAR_print_newline_STAR_ = _STAR_print_newline_STAR_14780_14786;
 }
 return [cljs.core.str(sb__7395__auto__)].join('');
 })(),/\n+$/,"");
@@ -155,12 +155,12 @@ return (new clack.serializer.string.StringSerializer(self__.__meta,cljs.core.not
 }
 });
 
-clack.serializer.string.StringSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__15843){
+clack.serializer.string.StringSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14776){
 var self__ = this;
 var this__7038__auto____$1 = this;
-var pred__15849 = cljs.core.keyword_identical_QMARK_;
-var expr__15850 = k__7039__auto__;
-return (new clack.serializer.string.StringSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__15843),null));
+var pred__14782 = cljs.core.keyword_identical_QMARK_;
+var expr__14783 = k__7039__auto__;
+return (new clack.serializer.string.StringSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14776),null));
 });
 
 clack.serializer.string.StringSerializer.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__7043__auto__){
@@ -169,10 +169,10 @@ var this__7043__auto____$1 = this;
 return cljs.core.seq.call(null,cljs.core.concat.call(null,cljs.core.PersistentVector.EMPTY,self__.__extmap));
 });
 
-clack.serializer.string.StringSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__15843){
+clack.serializer.string.StringSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14776){
 var self__ = this;
 var this__7030__auto____$1 = this;
-return (new clack.serializer.string.StringSerializer(G__15843,self__.__extmap,self__.__hash));
+return (new clack.serializer.string.StringSerializer(G__14776,self__.__extmap,self__.__hash));
 });
 
 clack.serializer.string.StringSerializer.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__7036__auto__,entry__7037__auto__){
@@ -203,8 +203,8 @@ clack.serializer.string.__GT_StringSerializer = (function clack$serializer$strin
 return (new clack.serializer.string.StringSerializer(null,null,null));
 });
 
-clack.serializer.string.map__GT_StringSerializer = (function clack$serializer$string$map__GT_StringSerializer(G__15845){
-return (new clack.serializer.string.StringSerializer(null,cljs.core.dissoc.call(null,G__15845),null));
+clack.serializer.string.map__GT_StringSerializer = (function clack$serializer$string$map__GT_StringSerializer(G__14778){
+return (new clack.serializer.string.StringSerializer(null,cljs.core.dissoc.call(null,G__14778),null));
 });
 
 clack.serializer.string.serializer = (function clack$serializer$string$serializer(){
