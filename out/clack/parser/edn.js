@@ -41,8 +41,8 @@ var temp__4657__auto__ = stream.read();
 if(cljs.core.truth_(temp__4657__auto__)){
 var chunk = temp__4657__auto__;
 return cljs.core.swap_BANG_.call(null,input,((function (chunk,temp__4657__auto__,input,this$__$1){
-return (function (p1__14764_SHARP_){
-return [cljs.core.str(p1__14764_SHARP_),cljs.core.str(chunk)].join('');
+return (function (p1__14790_SHARP_){
+return [cljs.core.str(p1__14790_SHARP_),cljs.core.str(chunk)].join('');
 });})(chunk,temp__4657__auto__,input,this$__$1))
 );
 } else {
@@ -64,13 +64,13 @@ var this__7031__auto____$1 = this;
 return cljs.core._lookup.call(null,this__7031__auto____$1,k__7032__auto__,null);
 });
 
-clack.parser.edn.EdnParser.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14766,else__7034__auto__){
+clack.parser.edn.EdnParser.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14792,else__7034__auto__){
 var self__ = this;
 var this__7033__auto____$1 = this;
-var G__14768 = k14766;
-switch (G__14768) {
+var G__14794 = k14792;
+switch (G__14794) {
 default:
-return cljs.core.get.call(null,self__.__extmap,k14766,else__7034__auto__);
+return cljs.core.get.call(null,self__.__extmap,k14792,else__7034__auto__);
 
 }
 });
@@ -88,10 +88,10 @@ return cljs.core.pr_sequential_writer.call(null,writer__7046__auto__,pr_pair__70
 
 clack.parser.edn.EdnParser.prototype.cljs$core$IIterable$ = true;
 
-clack.parser.edn.EdnParser.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14765){
+clack.parser.edn.EdnParser.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14791){
 var self__ = this;
-var G__14765__$1 = this;
-return (new cljs.core.RecordIter((0),G__14765__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
+var G__14791__$1 = this;
+return (new cljs.core.RecordIter((0),G__14791__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 clack.parser.edn.EdnParser.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__7029__auto__){
@@ -157,12 +157,12 @@ return (new clack.parser.edn.EdnParser(self__.__meta,cljs.core.not_empty.call(nu
 }
 });
 
-clack.parser.edn.EdnParser.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14765){
+clack.parser.edn.EdnParser.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14791){
 var self__ = this;
 var this__7038__auto____$1 = this;
-var pred__14769 = cljs.core.keyword_identical_QMARK_;
-var expr__14770 = k__7039__auto__;
-return (new clack.parser.edn.EdnParser(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14765),null));
+var pred__14795 = cljs.core.keyword_identical_QMARK_;
+var expr__14796 = k__7039__auto__;
+return (new clack.parser.edn.EdnParser(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14791),null));
 });
 
 clack.parser.edn.EdnParser.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__7043__auto__){
@@ -171,10 +171,10 @@ var this__7043__auto____$1 = this;
 return cljs.core.seq.call(null,cljs.core.concat.call(null,cljs.core.PersistentVector.EMPTY,self__.__extmap));
 });
 
-clack.parser.edn.EdnParser.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14765){
+clack.parser.edn.EdnParser.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14791){
 var self__ = this;
 var this__7030__auto____$1 = this;
-return (new clack.parser.edn.EdnParser(G__14765,self__.__extmap,self__.__hash));
+return (new clack.parser.edn.EdnParser(G__14791,self__.__extmap,self__.__hash));
 });
 
 clack.parser.edn.EdnParser.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__7036__auto__,entry__7037__auto__){
@@ -205,8 +205,8 @@ clack.parser.edn.__GT_EdnParser = (function clack$parser$edn$__GT_EdnParser(){
 return (new clack.parser.edn.EdnParser(null,null,null));
 });
 
-clack.parser.edn.map__GT_EdnParser = (function clack$parser$edn$map__GT_EdnParser(G__14767){
-return (new clack.parser.edn.EdnParser(null,cljs.core.dissoc.call(null,G__14767),null));
+clack.parser.edn.map__GT_EdnParser = (function clack$parser$edn$map__GT_EdnParser(G__14793){
+return (new clack.parser.edn.EdnParser(null,cljs.core.dissoc.call(null,G__14793),null));
 });
 
 clack.parser.edn.parser = (function clack$parser$edn$parser(){

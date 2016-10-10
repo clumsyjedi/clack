@@ -1,3 +1,3 @@
 
 # stringified results
-assert "echo [1 2 3] | clack -o str" "1\n2\n3"
+assert "range 2 | clack -o str" "0\n1\n2"

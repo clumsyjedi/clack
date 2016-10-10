@@ -7,6 +7,7 @@
 
 (defonce formats {:js :json :json :json 
                   :transit :tjs :transit-js :tjs :tjs :tjs
+                  :string :str :str :str :s :str
                   :edn :edn})
 
 (defn error 

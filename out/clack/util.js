@@ -8,7 +8,7 @@ goog.require('cognitect.transit');
 goog.require('clojure.string');
 if(typeof clack.util.formats !== 'undefined'){
 } else {
-clack.util.formats = new cljs.core.PersistentArrayMap(null, 6, [cljs.core.cst$kw$js,cljs.core.cst$kw$json,cljs.core.cst$kw$json,cljs.core.cst$kw$json,cljs.core.cst$kw$transit,cljs.core.cst$kw$tjs,cljs.core.cst$kw$transit_DASH_js,cljs.core.cst$kw$tjs,cljs.core.cst$kw$tjs,cljs.core.cst$kw$tjs,cljs.core.cst$kw$edn,cljs.core.cst$kw$edn], null);
+clack.util.formats = cljs.core.PersistentHashMap.fromArrays([cljs.core.cst$kw$js,cljs.core.cst$kw$string,cljs.core.cst$kw$s,cljs.core.cst$kw$str,cljs.core.cst$kw$tjs,cljs.core.cst$kw$transit,cljs.core.cst$kw$edn,cljs.core.cst$kw$json,cljs.core.cst$kw$transit_DASH_js],[cljs.core.cst$kw$json,cljs.core.cst$kw$str,cljs.core.cst$kw$str,cljs.core.cst$kw$str,cljs.core.cst$kw$tjs,cljs.core.cst$kw$tjs,cljs.core.cst$kw$edn,cljs.core.cst$kw$json,cljs.core.cst$kw$tjs]);
 }
 /**
  * log error and exit with error code

@@ -10,25 +10,29 @@
 
 (def allowed-opts {:input-format ["-i" "--input-format"]
                    :output-format ["-o" "--output-format"]
+                   :slurp ["-s" "--slurp"]
                    :map ["-m" "--map"]
                    :filter ["-f" "--filter"]
                    :remove ["-r" "--remove"]
                    :get ["-g" "--get-in"]
                    :eval ["-e" "--eval"]})
 
-(def meta-opt-keys #{:input-format :output-format})
+(def input-opt-keys #{:input-format :output-format})
 
 ;; search opts are filters, evals etc that will be applied to your data structure
 (def search-opts (reduce (fn [coll [k [short-opt long-opt]]]
                            (assoc coll short-opt k long-opt k)) 
-                         {} (remove #(meta-opt-keys (key %)) allowed-opts)))
+                         {} (dissoc allowed-opts :input-format :output-format :slurp)))
+
+;; it's just slurp, there are no other opts
+(def slurp-opts (into {} (map (fn [k] [k true]) (:slurp allowed-opts))))
 
 
 ;; meta opts are global switches for controlling the behavioure of clack, like whether we are
 ;; parsing json or edn
-(def meta-opts (reduce (fn [coll [k [short-opt long-opt]]]
-                         (assoc coll short-opt k long-opt k)) 
-                       {} (filter #(meta-opt-keys (key %)) allowed-opts)))
+(def input-opts (reduce (fn [coll [k [short-opt long-opt]]]
+                         (assoc coll short-opt k long-opt k))
+                       {} (filter #(input-opt-keys (key %)) allowed-opts)))
 
 (defn looks-like-keyword? [s]
   (re-find #"^:[\w\-\./]+$" s))
@@ -57,10 +61,16 @@
          (recur args (update-in query [:search] 
                                 conj [:get arg]))
 
-         (meta-opts arg)
-         (recur (rest args) 
+
+         (slurp-opts arg)
+         (recur args
                 (update-in query [:meta] 
-                           assoc (meta-opts arg) (keyword (read-string (first args)))))
+                           assoc :slurp true))
+
+         (input-opts arg)
+         (recur (rest args)
+                (update-in query [:meta] 
+                           assoc (input-opts arg) (keyword (read-string (first args)))))
          
          (search-opts arg)
          (recur (rest args) 
@@ -90,21 +100,18 @@
            queries)))
 
 (defn apply-query [query entities]
-  (map (partial serializer/serialize (output-format (:meta query)))
-       (if-let [s (not-empty (get query :search))]
-         (map #(search % s) entities)
-         entities)))
+  (let [entities (map (fn [entity] (search entity (not-empty (get query :search)))) entities)
+        entities (if (get-in query [:meta :slurp]) (first entities) entities)]
+    (map (partial serializer/serialize (output-format (:meta query))) entities)))
 
-(defn slurp-stdin []
+(defn -main [& args]
   (let [query (when-let [args (not-empty (drop 2 (js->clj js/process.argv)))]
                 (get-query args))]
     (parser/parse (input-format (:meta query)) 
                   js/process.stdin 
                   (fn [entities]
-                    (doseq [entity (apply-query query entities)]
-                      (print entity))))))
-
-(defn -main [& args]
-  (slurp-stdin))
+                    (let [entities (if (get-in query [:meta :slurp]) [entities] entities)]
+                      (doseq [entity (apply-query query entities)]
+                        (print entity)))))))
 
 (set! *main-cli-fn* -main)

@@ -35,13 +35,13 @@ var this__7031__auto____$1 = this;
 return cljs.core._lookup.call(null,this__7031__auto____$1,k__7032__auto__,null);
 });
 
-clack.serializer.transit.TransitSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14953,else__7034__auto__){
+clack.serializer.transit.TransitSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14810,else__7034__auto__){
 var self__ = this;
 var this__7033__auto____$1 = this;
-var G__14955 = k14953;
-switch (G__14955) {
+var G__14812 = k14810;
+switch (G__14812) {
 default:
-return cljs.core.get.call(null,self__.__extmap,k14953,else__7034__auto__);
+return cljs.core.get.call(null,self__.__extmap,k14810,else__7034__auto__);
 
 }
 });
@@ -59,10 +59,10 @@ return cljs.core.pr_sequential_writer.call(null,writer__7046__auto__,pr_pair__70
 
 clack.serializer.transit.TransitSerializer.prototype.cljs$core$IIterable$ = true;
 
-clack.serializer.transit.TransitSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14952){
+clack.serializer.transit.TransitSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14809){
 var self__ = this;
-var G__14952__$1 = this;
-return (new cljs.core.RecordIter((0),G__14952__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
+var G__14809__$1 = this;
+return (new cljs.core.RecordIter((0),G__14809__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 clack.serializer.transit.TransitSerializer.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__7029__auto__){
@@ -136,12 +136,12 @@ return (new clack.serializer.transit.TransitSerializer(self__.__meta,cljs.core.n
 }
 });
 
-clack.serializer.transit.TransitSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14952){
+clack.serializer.transit.TransitSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14809){
 var self__ = this;
 var this__7038__auto____$1 = this;
-var pred__14956 = cljs.core.keyword_identical_QMARK_;
-var expr__14957 = k__7039__auto__;
-return (new clack.serializer.transit.TransitSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14952),null));
+var pred__14813 = cljs.core.keyword_identical_QMARK_;
+var expr__14814 = k__7039__auto__;
+return (new clack.serializer.transit.TransitSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14809),null));
 });
 
 clack.serializer.transit.TransitSerializer.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__7043__auto__){
@@ -150,10 +150,10 @@ var this__7043__auto____$1 = this;
 return cljs.core.seq.call(null,cljs.core.concat.call(null,cljs.core.PersistentVector.EMPTY,self__.__extmap));
 });
 
-clack.serializer.transit.TransitSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14952){
+clack.serializer.transit.TransitSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14809){
 var self__ = this;
 var this__7030__auto____$1 = this;
-return (new clack.serializer.transit.TransitSerializer(G__14952,self__.__extmap,self__.__hash));
+return (new clack.serializer.transit.TransitSerializer(G__14809,self__.__extmap,self__.__hash));
 });
 
 clack.serializer.transit.TransitSerializer.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__7036__auto__,entry__7037__auto__){
@@ -184,8 +184,8 @@ clack.serializer.transit.__GT_TransitSerializer = (function clack$serializer$tra
 return (new clack.serializer.transit.TransitSerializer(null,null,null));
 });
 
-clack.serializer.transit.map__GT_TransitSerializer = (function clack$serializer$transit$map__GT_TransitSerializer(G__14954){
-return (new clack.serializer.transit.TransitSerializer(null,cljs.core.dissoc.call(null,G__14954),null));
+clack.serializer.transit.map__GT_TransitSerializer = (function clack$serializer$transit$map__GT_TransitSerializer(G__14811){
+return (new clack.serializer.transit.TransitSerializer(null,cljs.core.dissoc.call(null,G__14811),null));
 });
 
 clack.serializer.transit.serializer = (function clack$serializer$transit$serializer(){
