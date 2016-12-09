@@ -139,4 +139,9 @@ Transit to EDN
 echo "[\"^ \",\"foo\",null]" | clack -i tjs -o edn
 ```
 
+#meta
+
+Licensed unde the Eclipse Public License - v 1.0
+
 &copy; 2016 Frazer Irving
+
