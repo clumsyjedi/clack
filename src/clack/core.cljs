@@ -4,13 +4,14 @@
             [cljs.pprint :refer [pprint]]
             [clack.util :refer [input-format output-format eval* error]]
             [clack.parser :as parser]
-            [clack.serializer :as serializer])) 
+            [clack.serializer :as serializer]))
 
 (nodejs/enable-util-print!)
 
 (def allowed-opts {:input-format ["-i" "--input-format"]
                    :output-format ["-o" "--output-format"]
-                   :slurp ["-s" "--slurp"]
+                   :wrap ["-w" "--wrap"]
+                   :unwrap ["-u" "--unwrap"]
                    :map ["-m" "--map"]
                    :filter ["-f" "--filter"]
                    :remove ["-r" "--remove"]
@@ -22,10 +23,11 @@
 ;; search opts are filters, evals etc that will be applied to your data structure
 (def search-opts (reduce (fn [coll [k [short-opt long-opt]]]
                            (assoc coll short-opt k long-opt k)) 
-                         {} (dissoc allowed-opts :input-format :output-format :slurp)))
+                         {} (dissoc allowed-opts :input-format :output-format :wrap :unwrap)))
 
-;; it's just slurp, there are no other opts
-(def slurp-opts (into {} (map (fn [k] [k true]) (:slurp allowed-opts))))
+(def wrap-opts (reduce (fn [coll [k [short-opt long-opt]]]
+                         (assoc coll short-opt k long-opt k)) 
+                       {} (select-keys allowed-opts [:wrap :unwrap])))
 
 
 ;; meta opts are global switches for controlling the behavioure of clack, like whether we are
@@ -35,7 +37,7 @@
                        {} (filter #(input-opt-keys (key %)) allowed-opts)))
 
 (defn looks-like-keyword? [s]
-  (re-find #"^:[\w\-\./]+$" s))
+  (re-find #"^:[\w\-\./_]+$" s))
 
 (defn looks-like-string? [s]
   (re-find #"^[\w\.][\w\-\.]*$" s))
@@ -62,10 +64,10 @@
                                 conj [:get arg]))
 
 
-         (slurp-opts arg)
+         (wrap-opts arg)
          (recur args
                 (update-in query [:meta] 
-                           assoc :slurp true))
+                           assoc (wrap-opts arg) true))
 
          (input-opts arg)
          (recur (rest args)
@@ -101,7 +103,7 @@
 
 (defn apply-query [query entities]
   (let [entities (map (fn [entity] (search entity (not-empty (get query :search)))) entities)
-        entities (if (get-in query [:meta :slurp]) (first entities) entities)]
+        entities (if (get-in query [:meta :unwrap]) (first entities) entities)]
     (map (partial serializer/serialize (output-format (:meta query))) entities)))
 
 (defn -main [& args]
@@ -110,7 +112,7 @@
     (parser/parse (input-format (:meta query)) 
                   js/process.stdin 
                   (fn [entities]
-                    (let [entities (if (get-in query [:meta :slurp]) [entities] entities)]
+                    (let [entities (if (get-in query [:meta :wrap]) [entities] entities)]
                       (doseq [entity (apply-query query entities)]
                         (print entity)))))))
 

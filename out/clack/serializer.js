@@ -7,15 +7,15 @@ goog.require('clack.serializer.transit');
 goog.require('clack.serializer.string');
 goog.require('clack.serializer.protocol');
 clack.serializer.serializer = (function clack$serializer$serializer(input_type){
-var pred__14846 = cljs.core._EQ_;
-var expr__14847 = input_type;
-if(cljs.core.truth_(pred__14846.call(null,cljs.core.cst$kw$json,expr__14847))){
+var pred__15017 = cljs.core._EQ_;
+var expr__15018 = input_type;
+if(cljs.core.truth_(pred__15017.call(null,cljs.core.cst$kw$json,expr__15018))){
 return clack.serializer.json.serializer.call(null);
 } else {
-if(cljs.core.truth_(pred__14846.call(null,cljs.core.cst$kw$str,expr__14847))){
+if(cljs.core.truth_(pred__15017.call(null,cljs.core.cst$kw$str,expr__15018))){
 return clack.serializer.string.serializer.call(null);
 } else {
-if(cljs.core.truth_(pred__14846.call(null,cljs.core.cst$kw$tjs,expr__14847))){
+if(cljs.core.truth_(pred__15017.call(null,cljs.core.cst$kw$tjs,expr__15018))){
 return clack.serializer.transit.serializer.call(null);
 } else {
 return clack.serializer.edn.serializer.call(null);

@@ -17,4 +17,4 @@
                                    :optimize-constants true
                                    :pretty-print false
                                    }}]}
-  :npm {:dependencies [jsonparse "1.2.0"]})
+  :npm {:dependencies [[jsonparse "1.2.0"]]})

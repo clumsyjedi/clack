@@ -7,7 +7,7 @@
 (defrecord StringSerializer []
   ISerializer
   (freeze [this data]
-    (s/replace (with-out-str (pprint data)) #"\n+$" "")))
+    (str data)))
 
 (defn serializer []
   (->StringSerializer))
