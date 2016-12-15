@@ -1,5 +1,5 @@
 # stringified numbers
-assert "range 2 | clack -o str" "0\n1\n2"
+assert "range 2 | clack -o str" $'0\n1\n2'
 
 # stringified strings
 assert "echo '\"foo\"' | clack -o str" "foo"

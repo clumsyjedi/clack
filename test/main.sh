@@ -1,12 +1,20 @@
 #!/bin/bash
 
-if [ "$CLACK_ASSERT_PATH" == "" ]; then
-    echo "Cannot find assert.sh in CLACK_ASSERT_PATH";
-    echo "Get a copy of https://github.com/lehmannro/assert.sh";
-    exit 1;
-fi
+retval=0
 
-. "$CLACK_ASSERT_PATH"
+function assert {
+    expression=$1
+    expectation=$2
+    echo -n "'$expression' should equal '$expectation'..." >&2
+    actual=$(eval "$expression")
+    if [ "$expectation" != "$actual" ]; then
+        echo NOK >&2
+        echo "\tactual: $actual" >&2
+        retval=1
+    else
+        echo OK
+    fi
+}
 
 CLACK_ASSERTIONS_FILE=$1
 
@@ -21,5 +29,4 @@ else
     . "$CLACK_ASSERTIONS_FILE"
 fi
 
-assert_end examples
 
