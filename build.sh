@@ -6,6 +6,6 @@ if [ "$version" = "" ]; then
     exit 1;
 fi
 filename="bundle/clack-$version.tar.gz"
-tar -czf $filename bin out test clack.js;
+tar -czf $filename bin out test clack.js node_modules;
 echo -n 'sha256 is: ';
 echo $(shasum -a 256 $filename)
