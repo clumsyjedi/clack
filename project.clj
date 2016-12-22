@@ -12,7 +12,6 @@
                                    :main "clack.core"
                                    :output-to "clack.js"
                                    :output-dir "out"
-                                   :optimizations :none
                                    :target :nodejs
                                    :optimize-constants true
                                    :pretty-print false
