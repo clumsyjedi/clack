@@ -37,7 +37,7 @@
                        {} (filter #(input-opt-keys (key %)) allowed-opts)))
 
 (defn looks-like-keyword? [s]
-  (re-find #"^:[\w\-\./_]+$" s))
+  (re-find #"^:[\w\-\./_:]+$" s))
 
 (defn looks-like-string? [s]
   (re-find #"^[\w\.][\w\-\.]*$" s))

@@ -1,18 +1,31 @@
-# Clack
+# Clack - Lisp (Clojurescript) on the command line.
 
-Searchy, greppy jq-ish stuff for clojurey, edenish data
+Clack is a command line utility that allows you to apply Clojurescript functions to shell pipelines. It supports a range of common data interchange formats such as JSON, as well as being able to operate as a line processor like `awk`, `sed`, `grep` or `Perl`.
 
-On the command line.
+It serves as an extremely powerful tool for users familiar with Clojure, and as an easy to bootstrap method of learning Clojure functions.
 
 ## Setup
 
+### OSX Homebrew
+
+```
+brew tap clumsyjedi/clumsyjedi
+brew install clack
+```
+
+### Everyone else
+
 1. Install [node.js](https://nodejs.org) on your machine and make sure the `node` executable is on your PATH.
 1. Clone this project `git clone https://github.com/clumsyjedi/clack`
-1. Add `clack` executable to your path `export PATH=/path/to/clack/bin:$PATH`
-
-and you're done.
+1. Add `clack` executable to your path `export PATH=~/checkouts/clack/bin:$PATH`
 
 ## Usage
+
+Clack transforms input data from STDIN into Clojure (EDN) data structures, applies clojure functions to this data, and prints it to STDOUT. The true power of this process is in the Clojure functions themselves, so the interface to the clack binary is very simple.
+
+## Wrapping and unwrapping - clack as a line processor
+## Input/Output formats
+
 
 Clack provides a command line interface to clojure data and code. It is inspired conceptually by [jq](https://github.com/stedolan/jq) but differs considerably in it's syntax.
 
@@ -23,25 +36,29 @@ Let's look at some examples:
 *Echoing data unchanged*
 
 ```
-echo '{}' | clack
+$ echo '{}' | clack
+{}
 ```
 
 Looking up a key in a map
 
 ```
-echo '{:foo :bar}' | clack :foo
+$ echo '{:foo :bar}' | clack :foo
+:bar
 ```
 
 Multi-level key lookup
 
 ```
-echo '{:foo {:bar {:baz "whaaaat?"}}}' | clack :foo :bar :baz
+$ echo '{:foo {:bar {:baz "whaaaat?"}}}' | clack :foo :bar :baz
+"whaaaat?"
 ```
 
 Extracting data as shown above delegates to clojurescripts `get` fn. The lookup args are passed through some regexes to identify whether they map to a edn primitive such as a number, string or keyword.
 
 ```
-echo '{"foo" {:bar [:baz]}}' | clack foo :bar 0
+$ echo '{"foo" {:bar [:baz]}}' | clack foo :bar 0
+:baz
 ```
 
 Performing more complicated transformations on data is possible using some slightly more complicated syntax :)
