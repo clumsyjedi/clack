@@ -36,8 +36,11 @@
                          (assoc coll short-opt k long-opt k))
                        {} (filter #(input-opt-keys (key %)) allowed-opts)))
 
+(defn looks-like-regex? [s]
+  (re-find #"^/[^/]*/$" s))
+
 (defn looks-like-keyword? [s]
-  (re-find #"^:[\w\-\./_]+$" s))
+  (re-find #"^:[\w\-\./_:]+$" s))
 
 (defn looks-like-string? [s]
   (re-find #"^[\w\.][\w\-\.]*$" s))
@@ -45,11 +48,20 @@
 (defn looks-like-number? [s]
   (every? #{\1 \2 \3 \4 \5 \6 \7 \8 \9 \0} s))
 
+(defn- regex-fn [arg]
+  (fn [s]
+    (let [re (re-pattern (second (re-find #"^/([^/]*)/$" arg)))]
+      (re-find re (str s)))))
+
 (defn get-query 
   ([args] (get-query args {:meta {} :search []}))
   ([[arg & args] query]
    (cond (not arg)
          query
+
+         (looks-like-regex? arg)
+         (recur (rest args) 
+                (update-in query [:search] conj [:eval (regex-fn arg)]))
 
          (looks-like-keyword? arg)
          (recur args (update-in query [:search] 
@@ -71,13 +83,16 @@
 
          (input-opts arg)
          (recur (rest args)
-                (update-in query [:meta] 
+                (update-in query [:meta]
                            assoc (input-opts arg) (keyword (read-string (first args)))))
          
          (search-opts arg)
-         (recur (rest args) 
-                (update-in query [:search] 
-                           conj [(search-opts arg) (:value (eval* (first args)))]))
+         (let [pred (first args)]
+           (recur (rest args)
+                  (update-in query [:search] 
+                             conj [(search-opts arg) (if (looks-like-regex? pred)
+                                                       (regex-fn pred)
+                                                       (:value (eval* pred)))])))
          
 
          :default

@@ -35,13 +35,13 @@ var this__7031__auto____$1 = this;
 return cljs.core._lookup.call(null,this__7031__auto____$1,k__7032__auto__,null);
 });
 
-clack.serializer.json.JsonSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k15005,else__7034__auto__){
+clack.serializer.json.JsonSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14830,else__7034__auto__){
 var self__ = this;
 var this__7033__auto____$1 = this;
-var G__15007 = k15005;
-switch (G__15007) {
+var G__14832 = k14830;
+switch (G__14832) {
 default:
-return cljs.core.get.call(null,self__.__extmap,k15005,else__7034__auto__);
+return cljs.core.get.call(null,self__.__extmap,k14830,else__7034__auto__);
 
 }
 });
@@ -59,10 +59,10 @@ return cljs.core.pr_sequential_writer.call(null,writer__7046__auto__,pr_pair__70
 
 clack.serializer.json.JsonSerializer.prototype.cljs$core$IIterable$ = true;
 
-clack.serializer.json.JsonSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__15004){
+clack.serializer.json.JsonSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14829){
 var self__ = this;
-var G__15004__$1 = this;
-return (new cljs.core.RecordIter((0),G__15004__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
+var G__14829__$1 = this;
+return (new cljs.core.RecordIter((0),G__14829__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 clack.serializer.json.JsonSerializer.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__7029__auto__){
@@ -136,12 +136,12 @@ return (new clack.serializer.json.JsonSerializer(self__.__meta,cljs.core.not_emp
 }
 });
 
-clack.serializer.json.JsonSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__15004){
+clack.serializer.json.JsonSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14829){
 var self__ = this;
 var this__7038__auto____$1 = this;
-var pred__15008 = cljs.core.keyword_identical_QMARK_;
-var expr__15009 = k__7039__auto__;
-return (new clack.serializer.json.JsonSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__15004),null));
+var pred__14833 = cljs.core.keyword_identical_QMARK_;
+var expr__14834 = k__7039__auto__;
+return (new clack.serializer.json.JsonSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14829),null));
 });
 
 clack.serializer.json.JsonSerializer.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__7043__auto__){
@@ -150,10 +150,10 @@ var this__7043__auto____$1 = this;
 return cljs.core.seq.call(null,cljs.core.concat.call(null,cljs.core.PersistentVector.EMPTY,self__.__extmap));
 });
 
-clack.serializer.json.JsonSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__15004){
+clack.serializer.json.JsonSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14829){
 var self__ = this;
 var this__7030__auto____$1 = this;
-return (new clack.serializer.json.JsonSerializer(G__15004,self__.__extmap,self__.__hash));
+return (new clack.serializer.json.JsonSerializer(G__14829,self__.__extmap,self__.__hash));
 });
 
 clack.serializer.json.JsonSerializer.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__7036__auto__,entry__7037__auto__){
@@ -184,8 +184,8 @@ clack.serializer.json.__GT_JsonSerializer = (function clack$serializer$json$__GT
 return (new clack.serializer.json.JsonSerializer(null,null,null));
 });
 
-clack.serializer.json.map__GT_JsonSerializer = (function clack$serializer$json$map__GT_JsonSerializer(G__15006){
-return (new clack.serializer.json.JsonSerializer(null,cljs.core.dissoc.call(null,G__15006),null));
+clack.serializer.json.map__GT_JsonSerializer = (function clack$serializer$json$map__GT_JsonSerializer(G__14831){
+return (new clack.serializer.json.JsonSerializer(null,cljs.core.dissoc.call(null,G__14831),null));
 });
 
 clack.serializer.json.serializer = (function clack$serializer$json$serializer(){

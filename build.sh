@@ -2,7 +2,7 @@
 
 version=$1
 if [ "$version" = "" ]; then
-    echo "usage: ./bundle.sh <version>" >&2;
+    echo "usage: ./build.sh <version>" >&2;
     exit 1;
 fi
 filename="bundle/clack-$version.tar.gz"

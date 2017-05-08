@@ -18,7 +18,7 @@
               get-line-number get-column-number get-file-name
               string-push-back-reader]]
             [cljs.tools.reader.impl.utils :refer
-             [char ex-info? whitespace? numeric? desugar-meta next-id namespace-keys second'
+             [char ex-info? whitespace? numeric? desugar-meta next-id
               ReaderConditional reader-conditional reader-conditional?]]
             [cljs.tools.reader.impl.commons :refer
              [number-literal? read-past match-number parse-symbol read-comment throwing-reader]]
@@ -257,30 +257,15 @@
           :end-line end-line
           :end-column end-column})))))
 
-(defn- duplicate-keys-error [msg coll]
-  (letfn [(duplicates [seq]
-            (for [[id freq] (frequencies seq)
-                  :when (> freq 1)]
-              id))]
-    (let [dups (duplicates coll)]
-      (apply str msg
-           (when (> (count dups) 1) "s")
-           ": " (interpose ", " dups)))))
-
 (defn- read-map
   "Read in a map, including its location if the reader is an indexing reader"
   [rdr _ opts pending-forms]
   (let [[start-line start-column] (starting-line-col-info rdr)
         the-map (read-delimited \} rdr opts pending-forms)
         map-count (count the-map)
-        ks (take-nth 2 the-map)
-        key-set (set ks)
         [end-line end-column] (ending-line-col-info rdr)]
     (when (odd? map-count)
       (reader-error rdr "Map literal must contain an even number of forms"))
-    (when-not (= (count key-set) (count ks))
-      (reader-error rdr (duplicate-keys-error
-                         "Map literal contains duplicate key" ks)))
     (with-meta
       (if (zero? map-count)
         {}
@@ -432,21 +417,17 @@
   (let [[start-line start-column] (starting-line-col-info rdr)
         ;; subtract 1 from start-column so it includes the # in the leading #{
         start-column (if start-column (int (dec start-column)))
-        coll (read-delimited \} rdr opts pending-forms)
-        the-set (set coll)
+        the-set (set (read-delimited \} rdr opts pending-forms))
         [end-line end-column] (ending-line-col-info rdr)]
-      (when-not (= (count coll) (count the-set))
-        (reader-error rdr (duplicate-keys-error
-                           "Set literal contains duplicate key" coll)))
-      (with-meta the-set
-        (when start-line
-          (merge
-           (when-let [file (get-file-name rdr)]
-             {:file file})
-           {:line start-line
-            :column start-column
-            :end-line end-line
-            :end-column end-column})))))
+    (with-meta the-set
+      (when start-line
+        (merge
+         (when-let [file (get-file-name rdr)]
+           {:file file})
+         {:line start-line
+          :column start-column
+          :end-line end-line
+          :end-column end-column})))))
 
 (defn- read-discard
   "Read and discard the first object from rdr"
@@ -721,10 +702,11 @@
 
     (symbol? form)
     (list 'quote
-          (if (and (not (namespace form))
-                   (gstring/endsWith (name form) "#"))
-            (register-gensym form)
-            (resolve-symbol form)))
+          (if (namespace form)
+            (resolve-symbol form)
+            (if (gstring/endsWith (name form) "#")
+              (register-gensym form)
+              form)))
 
     (unquote? form) (second form)
     (unquote-splicing? form) (throw (ex-info "unquote-splice not in list"
@@ -763,30 +745,6 @@
     (-> (read* rdr true nil opts pending-forms)
       syntax-quote*)))
 
-(defn- read-namespaced-map
-  [rdr _ opts pending-forms]
-  (let [token (read-token rdr (read-char rdr))]
-    (if-let [ns (cond
-                  (= token ":")
-                  (ns-name *ns*)
-
-                  (= \: (first token))
-                  (some-> token (subs 1) parse-symbol second' symbol resolve-ns)
-
-                  :else
-                  (some-> token parse-symbol second'))]
-
-      (let [ch (read-past whitespace? rdr)]
-        (if (identical? ch \{)
-          (let [items (read-delimited \} rdr opts pending-forms)]
-            (when (odd? (count items))
-              (reader-error rdr "Map literal must contain an even number of forms"))
-            (let [keys (take-nth 2 items)
-                  vals (take-nth 2 (rest items))]
-              (zipmap (namespace-keys (str ns) keys) vals)))
-          (reader-error rdr "Namespaced map must specify a map")))
-      (reader-error rdr "Invalid token used as namespace in namespaced map: " token))))
-
 (defn- macros [ch]
   (case ch
     \" read-string*
@@ -820,7 +778,6 @@
     \! read-comment
     \_ read-discard
     \? read-cond
-    \: read-namespaced-map
     nil))
 
 (defn- read-tagged [^not-native rdr initch opts pending-forms]
