@@ -36,8 +36,10 @@
                          (assoc coll short-opt k long-opt k))
                        {} (filter #(input-opt-keys (key %)) allowed-opts)))
 
+(def regex-regex #"^/[^/]*/([a-zA-Z])*?$")
+
 (defn looks-like-regex? [s]
-  (re-find #"^/[^/]*/$" s))
+  (re-find regex-regex s))
 
 (defn looks-like-keyword? [s]
   (re-find #"^:[\w\-\./_:]+$" s))
@@ -50,8 +52,7 @@
 
 (defn- regex-fn [arg]
   (fn [s]
-    (let [re (re-pattern (second (re-find #"^/([^/]*)/$" arg)))]
-      (re-find re (str s)))))
+    (re-find (js/eval arg) (str s))))
 
 (defn get-query 
   ([args] (get-query args {:meta {} :search []}))
