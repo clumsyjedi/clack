@@ -1,5 +1,5 @@
 {
-  "name": "clack",
+  "name": "clack-cljs",
   "version": "1.0.0",
   "description": "Clojurescript on the command line",
   "main": "clack.js",
