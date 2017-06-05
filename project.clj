@@ -2,18 +2,15 @@
   :dependencies  [[org.clojure/clojure "1.8.0"]
                   [org.clojure/clojurescript "1.9.229"]
                   [com.cognitect/transit-cljs "0.8.237"]]
-  :plugins  [[lein-cljsbuild "1.1.3"]
-             [lein-npm "0.6.2"]]
+  :plugins  [[lein-cljsbuild "1.1.3"]]
   :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]
                                   [org.clojure/tools.nrepl "0.2.10"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
   :cljsbuild {:builds [{:source-paths ["src"]
-                        :compiler {
-                                   :main "clack.core"
+                        :compiler {:main "clack.core"
                                    :output-to "clack.js"
                                    :output-dir "out"
                                    :target :nodejs
                                    :optimize-constants true
                                    :pretty-print false
-                                   }}]}
-  :npm {:dependencies [[jsonparse "1.2.0"]]})
+                                   }}]})

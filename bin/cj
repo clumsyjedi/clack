@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CLACK_BIN=$(realpath $0)
+CLACK_BIN_DIR=$(dirname $CLACK_BIN)
+$CLACK_BIN_DIR/clack -i js "$@"
+

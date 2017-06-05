@@ -1,0 +1,34 @@
+{
+  "name": "clack",
+  "version": "1.0.0",
+  "description": "Clojurescript on the command line",
+  "main": "clack.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jsonparse": "1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "sh test/main.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clumsyjedi/clack.git"
+  },
+  "keywords": [
+    "jq",
+    "ack",
+    "grep",
+    "clojure",
+    "clojurescript",
+    "lisp"
+  ],
+  "author": "Frazer Irving",
+  "license": "EPL-1.0",
+  "bugs": {
+    "url": "https://github.com/clumsyjedi/clack/issues"
+  },
+  "homepage": "https://github.com/clumsyjedi/clack#readme"
+}
