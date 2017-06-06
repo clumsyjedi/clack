@@ -1,12 +1,16 @@
 {
   "name": "clack-cljs",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Clojurescript on the command line",
   "main": "clack.js",
+  "bin": {
+    "clack": "clack.js"
+  },
   "directories": {
     "test": "test"
   },
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "jsonparse": "1.2.0"
   },
   "devDependencies": {},

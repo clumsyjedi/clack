@@ -9,6 +9,6 @@ fi
 CLACK_BIN=$(realpath $0)
 CLACK_BIN_DIR=$(dirname $CLACK_BIN)
 CLACK_DIR=$CLACK_BIN_DIR/..
-cd $CLACK_DIR
+#cd $CLACK_DIR
 node "$CLACK_DIR/clack.js" "$@"
 
