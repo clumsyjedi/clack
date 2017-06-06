@@ -1,0 +1,19 @@
+---
+doc: one
+foo: bar
+baz: bak
+num: 5
+map:
+  lol: fml
+arr:
+  - first
+  - second
+---
+doc: two
+foo: bar
+baz: bak
+num: 5
+map:
+  lol: fml
+arr:
+  - first
