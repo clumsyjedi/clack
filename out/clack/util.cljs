@@ -5,12 +5,13 @@
             [cognitect.transit :as transit]
             [clojure.string :as s]))
 
-(defonce formats {:js :json :json :json 
+(defonce formats {:js :json :json :json
                   :transit :tjs :transit-js :tjs :tjs :tjs
                   :string :str :str :str :s :str
+                  :yaml :yaml :yml :yaml
                   :edn :edn})
 
-(defn error 
+(defn error
   "log error and exit with error code"
   [msg]
   (js/console.error msg)
@@ -20,7 +21,7 @@
   (js/require "fs")
   (js/fs.readFileSync filename))
 
-(defn eval* 
+(defn eval*
   "evaluate string"
   [s]
   (eval (empty-state)

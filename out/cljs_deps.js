@@ -31,7 +31,7 @@ goog.addDependency("../com/cognitect/transit.js", ['com.cognitect.transit'], ['c
 goog.addDependency("../cognitect/transit.js", ['cognitect.transit'], ['com.cognitect.transit.eq', 'cljs.core', 'com.cognitect.transit.types', 'constants_table', 'com.cognitect.transit', 'goog.math.Long']);
 goog.addDependency("../cljs/pprint.js", ['cljs.pprint'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer', 'constants_table', 'clojure.string']);
 goog.addDependency("../clack/util.js", ['clack.util'], ['cljs.tools.reader', 'cljs.js', 'cljs.core', 'cognitect.transit', 'cljs.pprint', 'constants_table', 'clojure.string']);
-goog.addDependency("../B15431C.js", ['cljs.nodejs'], ['cljs.core']);
+goog.addDependency("../49E1486.js", ['cljs.nodejs'], ['cljs.core']);
 goog.addDependency("../clack/serializer/protocol.js", ['clack.serializer.protocol'], ['cljs.core', 'constants_table']);
 goog.addDependency("../clack/serializer/string.js", ['clack.serializer.string'], ['cljs.tools.reader', 'cljs.core', 'cljs.pprint', 'constants_table', 'clack.serializer.protocol', 'clojure.string']);
 goog.addDependency("../clack/serializer/transit.js", ['clack.serializer.transit'], ['cljs.core', 'cognitect.transit', 'constants_table', 'clack.serializer.protocol']);
@@ -43,6 +43,7 @@ goog.addDependency("../clack/parser/string.js", ['clack.parser.string'], ['cljs.
 goog.addDependency("../clack/parser/edn.js", ['clack.parser.edn'], ['cljs.tools.reader', 'cljs.core', 'constants_table', 'clack.parser.protocol']);
 goog.addDependency("../clack/parser/json.js", ['clack.parser.json'], ['cljs.core', 'constants_table', 'clack.parser.protocol']);
 goog.addDependency("../clack/parser/transit.js", ['clack.parser.transit'], ['cljs.core', 'cognitect.transit', 'constants_table', 'clack.parser.protocol']);
-goog.addDependency("../clack/parser.js", ['clack.parser'], ['clack.parser.string', 'cljs.core', 'clack.parser.edn', 'clack.parser.json', 'constants_table', 'clack.parser.transit', 'clack.parser.protocol']);
+goog.addDependency("../clack/parser/yaml.js", ['clack.parser.yaml'], ['cljs.core', 'constants_table', 'clack.parser.protocol']);
+goog.addDependency("../clack/parser.js", ['clack.parser'], ['clack.parser.string', 'cljs.core', 'clack.parser.edn', 'clack.parser.json', 'constants_table', 'clack.parser.transit', 'clack.parser.protocol', 'clack.parser.yaml']);
 goog.addDependency("../clack/core.js", ['clack.core'], ['cljs.tools.reader', 'cljs.core', 'clack.util', 'cljs.nodejs', 'cljs.pprint', 'constants_table', 'clack.serializer', 'clack.parser']);
 goog.addDependency("../BCE03FE.js", ['cljs.nodejscli'], ['cljs.core', 'cljs.nodejs']);
