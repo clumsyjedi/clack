@@ -1,37 +1,166 @@
 # Clack - Lisp (Clojurescript) on the command line.
 
-Clack is a command line utility that allows you to apply Clojurescript functions to shell pipelines. It supports a range of common data interchange formats such as JSON, as well as being able to operate as a line processor like `awk`, `sed`, `grep` or `Perl`.
+Clack is a utility for destructuring and transforming data structures on the command line. It runs as a clojurescript application on the Node.js VM, and allows for the application of clojurescript functions to data within shell (eg. bash) pipelines.
 
-It serves as an extremely powerful tool for users familiar with Clojure, and as an easy to bootstrap method of learning Clojure functions.
+Clack can be thought of as a replacement to sed, awk, grep etc. Where these tools have thrived in processing tabular, line based data over the decaded, clack targets structured data such as JSON, YAML, TransitJs and EDN - although it can be useed as a shell line processor as well.
 
-## Setup
+Clack addresses the same problem spave as the excellent [jq](https://stedolan.github.io/jq/), however where that project focuses exclusively on JSON data, clack targets many data formats.
 
-### OSX Homebrew
+## Installation
 
 ```
-brew tap clumsyjedi/clumsyjedi
-brew install clack
+npm install -g clack-cljs
 ```
 
-### Everyone else
-
-1. Install [node.js](https://nodejs.org) on your machine and make sure the `node` executable is on your PATH.
-1. Clone this project `git clone https://github.com/clumsyjedi/clack`
-1. Add `clack` executable to your path `export PATH=~/checkouts/clack/bin:$PATH`
-
-## Usage
+## First look
 
 Clack transforms input data from STDIN into Clojure (EDN) data structures, applies clojure functions to this data, and prints it to STDOUT. The true power of this process is in the Clojure functions themselves, so the interface to the clack binary is very simple.
 
-## Wrapping and unwrapping - clack as a line processor
-## Input/Output formats
+Let's look at a trivial example. We have a JSON data structure in a file:
+
+```
+{
+  "foo": "bar", 
+  "baz": {
+    "its": [
+      "very", 
+      "deep"
+    ]
+  }
+}
+```
+
+In most line processors it would be hard to extract data nested inside this map. In clack, not so. We can do:
+
+```
+$ cat file.json | clack -i js :baz :its -e second
+"deep"
+```
+
+To break this down:
+
+`-i js` - treat the input as JSON. This input is converted into in memory clojurescript data structures on which our transformations will be applied.
+
+`:baz :its -e second` - apply these tramsformations to the data in left to right order.
+
+So `:baz` and `:its` are clojurescript keywords, that will descend down through the keys of the nested maps.
+
+And `-e second` will evaluate the clojurescript `eval` function, the second element of the array.
+
+## Usage
+
+The top-level switches for clack are:
+
+`clack [-i input-format] [-o output-format] [-w] [-u] [transformation pipeline ...]`
+
+Input/ouput formats can be any one of edn (default), js (json), yaml, tjs (transit) or s (string).
+
+### The trasformation pipeline
+
+The pipeline will treat tokens as follows:
+
+`:foo` - any token prefixed with a colon is interpreted as a clojurescript keyword.
+
+```
+$ echo {:foo :x} | clack :foo
+:x
+```
+
+`1` - any number will be interpreted as a number
+
+```
+$ echo '[:x :y :z]' | clack 1
+:y
+```
+
+`/pattern/switches` - a javascript regex pattern, trailed by regex switches.
+
+```
+echo Substrings with suBstance | clack -e /subs/i
+"Subs"
+nil
+"suBs"
+```
+
+`foo` - any non-numeric, non-colon prefixed token will be interpreted as a string
+
+```
+$ echo {"foo" :x} | clack foo
+:x
+```
+
+Additionally, clack supports the switches `-m` (map), `-f` (filter) and `-r` (remove). These our outlined in the Examples section below.
+
+### Input / output formats
+
+Clack can read and write several formats. To specify a format just supply it as the argument to the `-i` or `-o` switches. The supported formats are:
+
+yaml (YAML)
+
+tjs (Transit JS)
+
+js (JSON)
+
+edn (EDN, default)
+
+str (line bufered strings)
+
+### Wrap/unwrap
+
+A powerful, but counter intuitive feature of clack is that it treats its inputs as a list of data structures. Consider this:
+
+```
+$ echo {:foo 1} {:foo 2} | clack :foo
+1
+2
+```
+
+This is a behaviour that facilitates line processing, which is described below. However this may not be what you want. Consider this:
+
+```
+$ range 10 | clack -f 'even?'
+```
+
+You might assume that the above would filter the number 0-10, leaving only the even numbers. In fact, it will produce an error as it treats each number as a separate data structure and attempts to apply a filter to it (illegal). To get around this, we use the `-w` switch that wraps the data structures up into a list, so that they can be filtered like a list.
+
+```
+$ range 10 | clack -w -f 'even?'
+(0 2 4 6 8 10)
+```
+
+But wait, that's still not what you want. Now the return type is a list of numbers, this was supposed to output numbers, not lists of numbers. No worries, use the `-u` (unwrap) switch.
+
+```
+$ range 10 | clack -w -u -f 'even?'
+0
+2
+4
+6
+8
+10
+```
+
+Ah that's better.
+
+## clack as a line processor
+
+Now that we have covered the somewhat awkward topic of wrapping and unwrapping, we can explore one of the other uses of clack - as a line processor. With tools like sed or perl one can read lines from stdin, apply a little string based trasformation and output this to stdout. Clack can also treat it's inputs as plain, old, boring strings.
+
+```
+cat /usr/share/dict/words | clack -w -u -i s -o s -f /^x/i
+# ... all the words on my system that start with x - gosh there's so many.
+```
+
+Or, since this is actualy a really useful case
+
+```
+$ alias clackln="clack -w -u -i s -o s"
+$ cat /usr/share/dict/words | clack -f /^x/i
+# ... same list of words, who knew
+```
 
 
-Clack provides a command line interface to clojure data and code. It is inspired conceptually by [jq](https://github.com/stedolan/jq) but differs considerably in it's syntax.
-
-Clack reads data from stdin, and writes it to stdout. Options for manipulating that data are passed as arguments to the executable.
-
-Let's look at some examples:
+## More Examples
 
 *Echoing data unchanged*
 
@@ -135,25 +264,6 @@ echo {:foo {:bar {:baz [0 1 2]}}} | clack -e first -e second :bar -g :baz -f 'ev
 or
 ```
 echo {:foo {:bar {:baz [0 1 2]}}} | clack -e first | clack -e second | clack -g :bar | clack :baz | clack -f 'even?'
-```
-
-## Transit and JSON support
-
-Clack can read and write Transit-JS and JSON. Using the `-i` or `--input-format` and `-o` or `--output-format` switches.
-
-JSON to Transit
-```
-echo "{\"foo\": \"bar\"}" | clack -i js -o tjs
-```
-
-EDN to JSON
-```
-echo "{:foo :bar}" | clack -i edn -o js
-```
-
-Transit to EDN
-```
-echo "[\"^ \",\"foo\",null]" | clack -i tjs -o edn
 ```
 
 #meta
