@@ -24,6 +24,7 @@ if [ "$CLACK_ASSERTIONS_FILE" == "" ]; then
     . test/transit.sh
     . test/stringify.sh
     . test/dwim.sh
+    . test/yaml.sh
 else
     echo "Testing $CLACK_ASSERTIONS_FILE"
     . "$CLACK_ASSERTIONS_FILE"
