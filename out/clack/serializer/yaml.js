@@ -35,13 +35,13 @@ var this__7031__auto____$1 = this;
 return cljs.core._lookup.call(null,this__7031__auto____$1,k__7032__auto__,null);
 });
 
-clack.serializer.yaml.YamlSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k16560,else__7034__auto__){
+clack.serializer.yaml.YamlSerializer.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14840,else__7034__auto__){
 var self__ = this;
 var this__7033__auto____$1 = this;
-var G__16562 = k16560;
-switch (G__16562) {
+var G__14842 = k14840;
+switch (G__14842) {
 default:
-return cljs.core.get.call(null,self__.__extmap,k16560,else__7034__auto__);
+return cljs.core.get.call(null,self__.__extmap,k14840,else__7034__auto__);
 
 }
 });
@@ -59,10 +59,10 @@ return cljs.core.pr_sequential_writer.call(null,writer__7046__auto__,pr_pair__70
 
 clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IIterable$ = true;
 
-clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__16559){
+clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14839){
 var self__ = this;
-var G__16559__$1 = this;
-return (new cljs.core.RecordIter((0),G__16559__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
+var G__14839__$1 = this;
+return (new cljs.core.RecordIter((0),G__14839__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__7029__auto__){
@@ -136,12 +136,12 @@ return (new clack.serializer.yaml.YamlSerializer(self__.__meta,cljs.core.not_emp
 }
 });
 
-clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__16559){
+clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14839){
 var self__ = this;
 var this__7038__auto____$1 = this;
-var pred__16563 = cljs.core.keyword_identical_QMARK_;
-var expr__16564 = k__7039__auto__;
-return (new clack.serializer.yaml.YamlSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__16559),null));
+var pred__14843 = cljs.core.keyword_identical_QMARK_;
+var expr__14844 = k__7039__auto__;
+return (new clack.serializer.yaml.YamlSerializer(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14839),null));
 });
 
 clack.serializer.yaml.YamlSerializer.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__7043__auto__){
@@ -150,10 +150,10 @@ var this__7043__auto____$1 = this;
 return cljs.core.seq.call(null,cljs.core.concat.call(null,cljs.core.PersistentVector.EMPTY,self__.__extmap));
 });
 
-clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__16559){
+clack.serializer.yaml.YamlSerializer.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14839){
 var self__ = this;
 var this__7030__auto____$1 = this;
-return (new clack.serializer.yaml.YamlSerializer(G__16559,self__.__extmap,self__.__hash));
+return (new clack.serializer.yaml.YamlSerializer(G__14839,self__.__extmap,self__.__hash));
 });
 
 clack.serializer.yaml.YamlSerializer.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__7036__auto__,entry__7037__auto__){
@@ -184,8 +184,8 @@ clack.serializer.yaml.__GT_YamlSerializer = (function clack$serializer$yaml$__GT
 return (new clack.serializer.yaml.YamlSerializer(null,null,null));
 });
 
-clack.serializer.yaml.map__GT_YamlSerializer = (function clack$serializer$yaml$map__GT_YamlSerializer(G__16561){
-return (new clack.serializer.yaml.YamlSerializer(null,cljs.core.dissoc.call(null,G__16561),null));
+clack.serializer.yaml.map__GT_YamlSerializer = (function clack$serializer$yaml$map__GT_YamlSerializer(G__14841){
+return (new clack.serializer.yaml.YamlSerializer(null,cljs.core.dissoc.call(null,G__14841),null));
 });
 
 clack.serializer.yaml.serializer = (function clack$serializer$yaml$serializer(){

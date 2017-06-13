@@ -3,7 +3,7 @@
 
 (defrecord StringParser []
   IParser
-  (handle-input [this stream complete-fn]
+  (handle-input [this stream complete-fn _]
     (let [lines (atom [])]
       (.on stream "readable" (fn []
 

@@ -31,7 +31,7 @@ this.cljs$lang$protocol_mask$partition1$ = 8192;
 })
 clack.parser.json.JsonParser.prototype.clack$parser$protocol$IParser$ = true;
 
-clack.parser.json.JsonParser.prototype.clack$parser$protocol$IParser$handle_input$arity$3 = (function (this$,stream,complete_fn){
+clack.parser.json.JsonParser.prototype.clack$parser$protocol$IParser$handle_input$arity$4 = (function (this$,stream,complete_fn,keywordize_QMARK_){
 var self__ = this;
 var this$__$1 = this;
 var entities = cljs.core.atom.call(null,cljs.core.PersistentVector.EMPTY);
@@ -40,7 +40,7 @@ var parser = (new clack.parser.json.jsonparse());
 return (function (entity){
 var self = this;
 if((self.stack.length === (0))){
-return cljs.core.swap_BANG_.call(null,entities,cljs.core.conj,cljs.core.js__GT_clj.call(null,entity,cljs.core.cst$kw$keywordize_DASH_keys,true));
+return cljs.core.swap_BANG_.call(null,entities,cljs.core.conj,cljs.core.js__GT_clj.call(null,entity,cljs.core.cst$kw$keywordize_DASH_keys,keywordize_QMARK_));
 } else {
 return null;
 }
@@ -72,13 +72,13 @@ var this__7031__auto____$1 = this;
 return cljs.core._lookup.call(null,this__7031__auto____$1,k__7032__auto__,null);
 });
 
-clack.parser.json.JsonParser.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14848,else__7034__auto__){
+clack.parser.json.JsonParser.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__7033__auto__,k14858,else__7034__auto__){
 var self__ = this;
 var this__7033__auto____$1 = this;
-var G__14850 = k14848;
-switch (G__14850) {
+var G__14860 = k14858;
+switch (G__14860) {
 default:
-return cljs.core.get.call(null,self__.__extmap,k14848,else__7034__auto__);
+return cljs.core.get.call(null,self__.__extmap,k14858,else__7034__auto__);
 
 }
 });
@@ -96,10 +96,10 @@ return cljs.core.pr_sequential_writer.call(null,writer__7046__auto__,pr_pair__70
 
 clack.parser.json.JsonParser.prototype.cljs$core$IIterable$ = true;
 
-clack.parser.json.JsonParser.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14847){
+clack.parser.json.JsonParser.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__14857){
 var self__ = this;
-var G__14847__$1 = this;
-return (new cljs.core.RecordIter((0),G__14847__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
+var G__14857__$1 = this;
+return (new cljs.core.RecordIter((0),G__14857__$1,0,cljs.core.PersistentVector.EMPTY,cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 clack.parser.json.JsonParser.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__7029__auto__){
@@ -165,12 +165,12 @@ return (new clack.parser.json.JsonParser(self__.__meta,cljs.core.not_empty.call(
 }
 });
 
-clack.parser.json.JsonParser.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14847){
+clack.parser.json.JsonParser.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__7038__auto__,k__7039__auto__,G__14857){
 var self__ = this;
 var this__7038__auto____$1 = this;
-var pred__14851 = cljs.core.keyword_identical_QMARK_;
-var expr__14852 = k__7039__auto__;
-return (new clack.parser.json.JsonParser(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14847),null));
+var pred__14861 = cljs.core.keyword_identical_QMARK_;
+var expr__14862 = k__7039__auto__;
+return (new clack.parser.json.JsonParser(self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__7039__auto__,G__14857),null));
 });
 
 clack.parser.json.JsonParser.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__7043__auto__){
@@ -179,10 +179,10 @@ var this__7043__auto____$1 = this;
 return cljs.core.seq.call(null,cljs.core.concat.call(null,cljs.core.PersistentVector.EMPTY,self__.__extmap));
 });
 
-clack.parser.json.JsonParser.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14847){
+clack.parser.json.JsonParser.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__7030__auto__,G__14857){
 var self__ = this;
 var this__7030__auto____$1 = this;
-return (new clack.parser.json.JsonParser(G__14847,self__.__extmap,self__.__hash));
+return (new clack.parser.json.JsonParser(G__14857,self__.__extmap,self__.__hash));
 });
 
 clack.parser.json.JsonParser.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__7036__auto__,entry__7037__auto__){
@@ -213,8 +213,8 @@ clack.parser.json.__GT_JsonParser = (function clack$parser$json$__GT_JsonParser(
 return (new clack.parser.json.JsonParser(null,null,null));
 });
 
-clack.parser.json.map__GT_JsonParser = (function clack$parser$json$map__GT_JsonParser(G__14849){
-return (new clack.parser.json.JsonParser(null,cljs.core.dissoc.call(null,G__14849),null));
+clack.parser.json.map__GT_JsonParser = (function clack$parser$json$map__GT_JsonParser(G__14859){
+return (new clack.parser.json.JsonParser(null,cljs.core.dissoc.call(null,G__14859),null));
 });
 
 clack.parser.json.parser = (function clack$parser$json$parser(){

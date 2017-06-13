@@ -31,7 +31,7 @@ this.cljs$lang$protocol_mask$partition1$ = 8192;
 })
 clack.parser.edn.EdnParser.prototype.clack$parser$protocol$IParser$ = true;
 
-clack.parser.edn.EdnParser.prototype.clack$parser$protocol$IParser$handle_input$arity$3 = (function (this$,stream,complete_fn){
+clack.parser.edn.EdnParser.prototype.clack$parser$protocol$IParser$handle_input$arity$4 = (function (this$,stream,complete_fn,_){
 var self__ = this;
 var this$__$1 = this;
 var input = cljs.core.atom.call(null,"");

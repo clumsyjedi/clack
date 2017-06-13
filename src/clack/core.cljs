@@ -11,6 +11,7 @@
 (def allowed-opts {:input-format ["-i" "--input-format"]
                    :output-format ["-o" "--output-format"]
                    :wrap ["-w" "--wrap"]
+                   :no-keywordize ["-K" "--no-keywordize"]
                    :unwrap ["-u" "--unwrap"]
                    :map ["-m" "--map"]
                    :filter ["-f" "--filter"]
@@ -23,12 +24,16 @@
 ;; search opts are filters, evals etc that will be applied to your data structure
 (def search-opts (reduce (fn [coll [k [short-opt long-opt]]]
                            (assoc coll short-opt k long-opt k)) 
-                         {} (dissoc allowed-opts :input-format :output-format :wrap :unwrap)))
+                         {} (dissoc allowed-opts 
+                                    :input-format :output-format :wrap :unwrap :no-keywordize)))
 
 (def wrap-opts (reduce (fn [coll [k [short-opt long-opt]]]
                          (assoc coll short-opt k long-opt k)) 
                        {} (select-keys allowed-opts [:wrap :unwrap])))
 
+(def parser-opts (reduce (fn [coll [k [short-opt long-opt]]]
+                           (assoc coll short-opt k long-opt k)) 
+                         {} (select-keys allowed-opts [:no-keywordize])))
 
 ;; meta opts are global switches for controlling the behavioure of clack, like whether we are
 ;; parsing json or edn
@@ -76,6 +81,10 @@
          (recur args (update-in query [:search] 
                                 conj [:get arg]))
 
+         (parser-opts arg)
+         (recur args
+                (update-in query [:meta] 
+                           assoc (parser-opts arg) true))
 
          (wrap-opts arg)
          (recur args
@@ -130,6 +139,7 @@
                   (fn [entities]
                     (let [entities (if (get-in query [:meta :wrap]) [entities] entities)]
                       (doseq [entity (apply-query query entities)]
-                        (print entity)))))))
+                        (print entity))))
+                  (not (get-in query [:meta :no-keywordize])))))
 
 (set! *main-cli-fn* -main)

@@ -5,7 +5,7 @@
 
 (defrecord TransitParser []
   IParser
-  (handle-input [this stream complete-fn]
+  (handle-input [this stream complete-fn _]
     (let [input (atom "")]
       (.on stream "readable" (fn []
                                (when-let [chunk (.read stream)]

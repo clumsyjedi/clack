@@ -5,14 +5,14 @@
 
 (defrecord YamlParser []
   IParser
-  (handle-input [this stream complete-fn]
+  (handle-input [this stream complete-fn keywordize?]
     (let [input (atom "")
           entities (atom [])]
       (.on stream "readable" (fn []
                                (when-let [chunk (.read stream)]
                                  (swap! input #(str % chunk)))))
       (.on stream "end" (fn []
-                          (complete-fn (map #(js->clj % :keywordize-keys true)
+                          (complete-fn (map #(js->clj % :keywordize-keys keywordize?)
                                             (.loadAll js-yaml @input))))))))
 
 (defn parser []

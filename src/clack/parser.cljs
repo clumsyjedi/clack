@@ -14,5 +14,5 @@
     :yaml (yaml/parser)
     (edn/parser)))
 
-(defn parse [input-type stream complete-fn]
-  (handle-input (parser input-type) stream complete-fn))
+(defn parse [input-type stream complete-fn keywordize?]
+  (handle-input (parser input-type) stream complete-fn keywordize?))
