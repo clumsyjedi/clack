@@ -49,11 +49,12 @@
 (defn looks-like-keyword? [s]
   (re-find #"^:[\w\-\./_:]+$" s))
 
-(defn looks-like-string? [s]
-  (re-find #"^[\w\.][\w\-\.]*$" s))
-
 (defn looks-like-number? [s]
   (every? #{\1 \2 \3 \4 \5 \6 \7 \8 \9 \0} s))
+
+(def looks-like-string? (complement (some-fn looks-like-number? 
+                                             looks-like-keyword? 
+                                             looks-like-regex?)))
 
 (defn- regex-fn [arg]
   (fn [s]
