@@ -1,6 +1,6 @@
 {
   "name": "clack-cljs",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Clojurescript on the command line",
   "main": "clack.js",
   "bin": {

@@ -31,7 +31,7 @@ goog.addDependency("../com/cognitect/transit.js", ['com.cognitect.transit'], ['c
 goog.addDependency("../cognitect/transit.js", ['cognitect.transit'], ['com.cognitect.transit.eq', 'cljs.core', 'com.cognitect.transit.types', 'constants_table', 'com.cognitect.transit', 'goog.math.Long']);
 goog.addDependency("../cljs/pprint.js", ['cljs.pprint'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer', 'constants_table', 'clojure.string']);
 goog.addDependency("../clack/util.js", ['clack.util'], ['cljs.tools.reader', 'cljs.js', 'cljs.core', 'cognitect.transit', 'cljs.pprint', 'constants_table', 'clojure.string']);
-goog.addDependency("../ABE3928.js", ['cljs.nodejs'], ['cljs.core']);
+goog.addDependency("../8079981.js", ['cljs.nodejs'], ['cljs.core']);
 goog.addDependency("../clack/serializer/protocol.js", ['clack.serializer.protocol'], ['cljs.core', 'constants_table']);
 goog.addDependency("../clack/serializer/string.js", ['clack.serializer.string'], ['cljs.tools.reader', 'cljs.core', 'cljs.pprint', 'constants_table', 'clack.serializer.protocol', 'clojure.string']);
 goog.addDependency("../clack/serializer/transit.js", ['clack.serializer.transit'], ['cljs.core', 'cognitect.transit', 'constants_table', 'clack.serializer.protocol']);

@@ -35,6 +35,7 @@
                            (assoc coll short-opt k long-opt k)) 
                          {} (select-keys allowed-opts [:no-keywordize])))
 
+
 ;; meta opts are global switches for controlling the behavioure of clack, like whether we are
 ;; parsing json or edn
 (def input-opts (reduce (fn [coll [k [short-opt long-opt]]]
@@ -54,7 +55,8 @@
 
 (def looks-like-string? (complement (some-fn looks-like-number? 
                                              looks-like-keyword? 
-                                             looks-like-regex?)))
+                                             looks-like-regex?
+                                             (set (mapcat second allowed-opts)))))
 
 (defn- regex-fn [arg]
   (fn [s]
