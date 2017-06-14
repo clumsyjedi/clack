@@ -10,14 +10,15 @@ if(typeof Math.imul == "undefined" || (Math.imul(0xffffffff,5) == 0)) {
         return ((al * bl) + (((ah * bl + al * bh) << 16) >>> 0)|0);
     }
 }
+require('app-module-path').addPath(__dirname + "/out");
 
 var path = require("path");
 try {
     require("source-map-support").install();
 } catch(err) {
 }
-require(path.join(path.resolve("."),"out","goog","bootstrap","nodejs.js"));
-require(path.join(path.resolve("."),"out","cljs_deps.js"));
+require("goog/bootstrap/nodejs.js");
+require("cljs_deps.js");
 goog.global.CLOSURE_UNCOMPILED_DEFINES = {"cljs.core._STAR_target_STAR_":"nodejs"};
 goog.require("clack.core");
 goog.require("cljs.nodejscli");
