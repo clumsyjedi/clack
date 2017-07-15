@@ -1,12 +1,10 @@
 (ns clack.core
-  (:require [cljs.nodejs :as nodejs]
-            [cljs.tools.reader :refer [read-string]]
+  (:require [cljs.tools.reader :refer [read-string]]
             [cljs.pprint :refer [pprint]]
             [clack.util :refer [input-format output-format eval* error]]
             [clack.parser :as parser]
-            [clack.serializer :as serializer]))
-
-(nodejs/enable-util-print!)
+            [clack.serializer :as serializer]
+            [planck.core :refer [*command-line-args* *in*]]))
 
 (def allowed-opts {:input-format ["-i" "--input-format"]
                    :output-format ["-o" "--output-format"]
@@ -135,14 +133,12 @@
     (map (partial serializer/serialize (output-format (:meta query))) entities)))
 
 (defn -main [& args]
-  (let [query (when-let [args (not-empty (drop 2 (js->clj js/process.argv)))]
+  (let [query (when-let [args (not-empty *command-line-args*)]
                 (get-query args))]
     (parser/parse (input-format (:meta query)) 
-                  js/process.stdin 
+                  *in*
                   (fn [entities]
                     (let [entities (if (get-in query [:meta :wrap]) [entities] entities)]
                       (doseq [entity (apply-query query entities)]
                         (print entity))))
                   (not (get-in query [:meta :no-keywordize])))))
-
-(set! *main-cli-fn* -main)

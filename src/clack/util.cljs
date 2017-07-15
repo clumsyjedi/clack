@@ -3,7 +3,8 @@
             [cljs.tools.reader :refer [read-string]]
             [cljs.pprint :refer [pprint]]
             [cognitect.transit :as transit]
-            [clojure.string :as s]))
+            [clojure.string :as s]
+            [planck.core :refer [exit]]))
 
 (defonce formats {:js :json :json :json
                   :transit :tjs :transit-js :tjs :tjs :tjs
@@ -15,7 +16,7 @@
   "log error and exit with error code"
   [msg]
   (js/console.error msg)
-  (js/process.exit 1))
+  (exit 1))
 
 (defn slurp [filename]
   (js/require "fs")
