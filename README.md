@@ -55,7 +55,7 @@ The top-level switches for clack are:
 
 Input/ouput formats can be any one of edn (default), js (json), yaml, tjs (transit) or s (string).
 
-### The trasformation pipeline
+### The transformation pipeline
 
 The pipeline will treat tokens as follows:
 
