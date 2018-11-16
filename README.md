@@ -2,7 +2,7 @@
 
 Clack is a utility for destructuring and transforming data structures on the command line. It runs as a clojurescript application on the Node.js VM, and allows for the application of clojurescript functions to data within shell (eg. bash) pipelines.
 
-Clack can be thought of as a replacement to sed, awk, grep etc. Where these tools have thrived in processing tabular, line based data over the decaded, clack targets structured data such as JSON, YAML, TransitJs and EDN - although it can be useed as a shell line processor as well.
+Clack can be thought of as a replacement to sed, awk, grep etc. Where these tools have thrived in processing tabular, line based data over the decades, clack targets structured data such as JSON, YAML, TransitJs and EDN - although it can be used as a shell line processor as well.
 
 Clack addresses the same problem spave as the excellent [jq](https://stedolan.github.io/jq/), however where that project focuses exclusively on JSON data, clack targets many data formats.
 
