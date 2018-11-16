@@ -1,4 +1,4 @@
-# Clack - Lisp (Clojurescript) on the command line.
+# Clack - Clojurescript on the command line.
 
 Clack is a utility for destructuring and transforming data structures on the command line. It runs as a clojurescript application on the Node.js VM, and allows for the application of clojurescript functions to data within shell (eg. bash) pipelines.
 
